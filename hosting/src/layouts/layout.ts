@@ -1,4 +1,4 @@
-import { collection, getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc } from 'firebase/firestore'
 import { onAuth, getFirebase } from '../firebase'
 import { signOut } from 'firebase/auth'
 
