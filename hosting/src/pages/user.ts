@@ -1,6 +1,6 @@
 import { updateProfile } from 'firebase/auth';
 import { getFirebase, onAuth } from '../firebase'
-import { collection, query, where, getDocs, deleteDoc, doc, setDoc, getDoc } from 'firebase/firestore'
+import { collection, query, where, getDocs, deleteDoc, doc, setDoc, getDoc, orderBy } from 'firebase/firestore'
 
 $('#changeUserName').on('click', async function () {
   const { auth, firestore } = getFirebase()
@@ -80,7 +80,11 @@ async function init(user) {
 
   // Query for all users's enduros
   const myEndurosRef = collection(getFirebase().firestore, "enduros");
-  const q = query(myEndurosRef, where("userId", "==", user.uid));
+  const q = query(
+    myEndurosRef, 
+    where("userId", "==", user.uid), 
+    orderBy('createdAt', 'desc')
+  );
 
   // Run query and render
   const snapshot = await getDocs(q);
