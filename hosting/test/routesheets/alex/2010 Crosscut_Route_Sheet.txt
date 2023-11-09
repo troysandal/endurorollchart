@@ -1,0 +1,36 @@
+2010 Crosscut
+Family Enduro
+Cow Mountain
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          21 mph   2.10   2.10  8:06:00
+ 8:06:00   2.10 Speed          20 mph   5.00   7.10  8:21:00
+ 8:08:24   2.90 Note       Speedo Check @ 2.9
+ 8:15:54   5.40 Reset To      5.50 mi   0.10   5.50  8:16:12
+ 8:18:00   6.10 Note       Common Course Starts @ 6.1
+ 8:21:00   7.10 Speed          16 mph   3.20  10.30  8:33:00
+ 8:33:00  10.30 Speed          20 mph   3.00  13.30  8:44:00
+ 8:36:00  11.30 Free Time       2 min                8:38:00
+ 8:44:00  13.30 Speed          23 mph   2.30  15.60  8:50:00
+ 8:46:37  14.30 Reset To     15.60 mi   1.30  15.60  8:50:00
+ 8:50:00  15.60 Speed          17 mph   3.40  19.00  9:02:00
+ 8:52:18  16.25 Note       End Common Course @ 16.25
+ 9:02:00  19.00 Speed          20 mph   7.00  26.00  9:23:00
+ 9:23:00  26.00 Speed          24 mph   2.00  28.00  9:28:00
+ 9:26:00  27.20 Reset To     28.00 mi   0.80  28.00  9:28:00
+ 9:28:00  28.00 Speed          15 mph   6.50  34.50 10:12:00
+ 9:36:00  30.00 Note       Gas Available @ 30
+ 9:36:00  30.00 Free Time      18 min                9:54:00
+10:12:00  34.50 Speed          17 mph   5.10  39.60 10:30:00
+10:30:00  39.60 Speed          19 mph   1.90  41.50 10:36:00
+10:36:00  41.50 Speed          15 mph   2.50  44.00 10:46:00
+10:46:00  44.00 Speed          14 mph   2.10  46.10 10:55:00
+10:55:00  46.10 Speed          18 mph   4.20  50.30 11:14:00
+10:55:00  46.10 Note       Common Course Starts @ 46.1
+10:57:00  46.70 Free Time       5 min               11:02:00
+11:14:00  50.30 Speed          20 mph   4.00  54.30 11:26:00
+11:26:00  54.30 Speed          16 mph   4.00  58.30 11:41:00
+11:28:27  54.95 Note       End Common Course @ 54.95
+11:32:23  56.00 Reset To     56.20 mi   0.20  56.20 11:33:08
+11:41:00  58.30 Speed          17 mph   3.40  61.70 11:53:00
+11:53:00  61.70 End                                         

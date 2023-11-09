@@ -1,0 +1,8 @@
+
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          30 mph  11.00  11.00  8:22:00
+ 8:14:00   7.00 Known
+ 8:22:00  11.00 Speed          15 mph   0.00  11.00  8:22:00

@@ -1,0 +1,17 @@
+
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          30 mph  21.00  12.00  8:49:00
+ 8:06:37   3.31 Reset To      3.96 mi   0.65   3.96  8:07:55
+ 8:08:00   4.00 Free Time       5 min                8:13:00
+ 8:13:36   4.30 Note       sadf
+ 8:15:00   5.00 Break           2 min                8:17:00
+ 8:25:00   9.00 Reset to 0
+ 8:31:00   3.00 Gas Stop
+ 8:39:00   7.00 Known
+ 8:39:00   7.00 Note       Eat
+ 8:42:00   8.50 Free to      10.87 mi   2.37  10.87  8:46:44
+ 8:43:00   9.00 Start
+ 8:49:00  12.00 End

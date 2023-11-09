@@ -1,0 +1,43 @@
+Fools Gold 2011
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          12 mph   1.80   1.80  8:09:00
+ 8:09:00   1.80 Speed          17 mph  11.90  13.70  9:01:00
+ 8:16:06   3.81 Note       Common Course to 6.78
+ 8:45:45  12.21 Note       Common Course to 13.49
+ 8:46:46  12.50 Free Time      10 min                8:56:46
+ 9:01:00  13.70 Speed          18 mph   3.30  17.00  9:12:00
+ 9:12:00  17.00 Speed          24 mph   8.40  25.40  9:48:00
+ 9:15:11  18.27 Note       Common Course to 20.85
+ 9:31:30  24.80 Free Time      15 min                9:46:30
+ 9:48:00  25.40 Speed          17 mph   8.50  33.90 10:33:00
+10:01:46  29.30 Note       GAS
+10:01:46  29.30 Note       Common Course to 30.24
+10:01:46  29.30 Free Time      15 min               10:16:46
+10:19:57  30.20 Note       Course SPLIT read signs
+10:33:00  33.90 Speed          11 mph   1.10  35.00 10:54:00
+10:36:50  34.60 Free Time      15 min               10:51:50
+10:54:00  35.00 Speed          12 mph   0.60  35.60 10:57:00
+10:54:00  35.00 Note       QUIET
+10:57:00  35.60 Speed          24 mph  18.80  54.40 12:04:00
+11:19:30  44.60 Free Time      10 min               11:29:30
+11:41:30  49.40 Free Time      10 min               11:51:30
+12:04:00  54.40 Speed          18 mph   3.60  58.00 12:16:00
+12:16:00  58.00 Speed          24 mph   1.20  59.20 12:19:00
+12:19:00  59.20 Speed          30 mph  10.00  69.20 13:19:00
+12:31:27  65.42 Note       GAS
+12:31:27  65.42 Free Time      40 min               13:11:27
+13:11:27  65.42 Note       Common Course to 66.35
+13:13:24  66.40 Note       Course SPLIT
+13:19:00  69.20 Speed          24 mph   5.60  74.80 13:33:00
+13:23:12  70.88 Note       Common Course to 73.47
+13:33:00  74.80 Speed          12 mph   2.40  77.20 13:45:00
+13:34:00  75.00 Note       common course to 76.27
+13:45:00  77.20 Speed          29 mph   2.90  80.10 14:01:00
+13:48:44  79.00 Free Time      10 min               13:58:44
+14:00:11  79.70 Note       Common course to 82.71
+14:01:00  80.10 Speed           9 mph   1.50  81.60 14:11:00
+14:11:00  81.60 Speed          12 mph   1.40  83.00 14:18:00
+14:18:00  83.00 End                                         

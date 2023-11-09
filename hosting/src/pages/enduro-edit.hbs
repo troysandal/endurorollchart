@@ -1,0 +1,47 @@
+{{#> "layouts/layout.hbs"}}
+<div class="container">
+  <h3>Enduro</h3>
+
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <textarea rows="1" class="form-control" id="title" name="title" placeholder="Enduro Name"></textarea>
+    </div>
+    <div class="form-group">
+      Check this box if your race doesn't allow secret checks below a certain
+      speed average.  For example, <a href="https://www.ama-d36.org">AMA D36</a>
+      Enduro Rule 11.2.7.10 says <i>"Secret checks may not be used at a speed average
+      of 6 mph or less."</i>  If checked, all Possibles <b>at or below</b> the minimum speed 
+      will be removed from the JART chart.
+    </div>
+    <div class="form-group">
+      <input type="checkbox" id="useSecretMinSpeed"> Enforce Minimum Speed for Secrets</input>
+      <div id="minSecretSpeedBlock" style="display:none">
+      <br />
+      &nbsp;&nbsp;&nbsp;&nbsp; Speed (less than or equal to) <input type="text" id="secretMinSpeed"></input>
+      </div>
+    </div>
+  </form>
+
+  <button id="save" class="btn btn-default">Save</button>
+
+
+  <div>
+    <h4>Route Statistics</h4>
+    <div>Key Time : <span id="keyTime"></span></div>
+    <div>End Time : <span id="endTime"></span></div>
+    <div>Free Time : <span id="freeTime"></span></div>
+    <div>Route Distance : <span id="distance"></span></div>
+    <div>Ground Distance: <span id="distanceOnGround"></span></div>
+    <div>Reset Distance: <span id="resetDistance"></span></div>
+    <div>Laps: <span id="totalLaps"></span></div>
+  </div>
+
+  <div>
+    <h4>Route Sheet</h4>
+    <div id="container"></div>
+  </div>
+</div>
+
+<script type="module" src="/src/pages/enduro-edit.ts"></script>
+{{/ "layouts/layout.hbs"}}

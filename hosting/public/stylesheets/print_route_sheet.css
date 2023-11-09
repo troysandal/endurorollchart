@@ -1,0 +1,26 @@
+@media print {
+  @page {
+    width: 100%;
+    margin-top: 20mm;
+    margin-bottom: 20mm;
+    padding: 10mm 0;
+  }
+
+  @page :first {
+    margin-top: 0mm;
+  }
+
+  xbody {
+    width: 100%;
+    margin-top: 10mm;
+    padding: 10mm 0;
+  }
+
+  table {
+    page-break-inside:auto;
+  }
+  tr {
+    page-break-inside:avoid;
+    page-break-after:auto;
+  }
+}

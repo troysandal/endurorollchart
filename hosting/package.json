@@ -1,0 +1,39 @@
+{
+  "name": "hosting",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run firebase",
+    "build": "tsc && vite build",
+    "deploy": "firebase deploy --only hosting",
+    "preview": "vite preview",
+    "firebase": "firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:e2e": "cypress run",
+    "test:unit": "mocha",
+    "test:debug": "mocha --inspect"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.9.8",
+    "@types/chai": "^4.3.6",
+    "@types/mocha": "^10.0.2",
+    "@vituum/vite-plugin-handlebars": "^1.0.0",
+    "chai": "^4.3.10",
+    "cypress": "^9.3.1",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vituum": "^1.0.0"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.19",
+    "firebase": "^10.4.0",
+    "firebase-tools": "^12.8.0",
+    "firebaseui": "^6.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

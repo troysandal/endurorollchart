@@ -1,0 +1,16 @@
+{
+  "name": "endurorollchart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "firebase": "firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^10.4.0"
+  }
+}

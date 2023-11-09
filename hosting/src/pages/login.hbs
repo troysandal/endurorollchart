@@ -1,0 +1,24 @@
+{{#> "layouts/layout.hbs"}}
+
+<div class="container">
+  <h1>Email Sign In</h1>
+  <p>Enter your email address and we'll send you a sign in link. If it's your
+    first time signing in an account will be automatically created for you when
+    you click the link.
+  </p>
+  <form id="signInForm" role='form' style='max-width: 300px;'>
+    <div class="form-group">
+      <input class="form-control" type='email' name="email" placeholder='Your Email' autocomplete="username" required />
+    </div>
+    <button class="btn btn-default" type='submit'>Email Me Login Link</button>
+  </form>
+  
+  <h1>Other Sign Ins</h1>
+  <p>Click a link below to sign in using a 3rd party provider.
+  </p>
+  <div id="firebaseui-auth-container" />
+  <script type="module" src="/src/pages/login.ts"></script>
+</div>
+
+
+{{/ "layouts/layout.hbs"}}

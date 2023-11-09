@@ -1,0 +1,137 @@
+{
+    "title": "Pine Hill Enduro May 2nd 2004 KEYTIME 9:00 a.m.",
+    "routeSheet": {
+        "keyTime": 32400,
+        "actions": [
+            {
+                "type": "speedChange",
+                "distance": 0,
+                "speed": 20
+            },
+            {
+                "type": "speedChange",
+                "distance": 3,
+                "speed": 15
+            },
+            {
+                "type": "speedChange",
+                "distance": 4,
+                "speed": 20
+            },
+            {
+                "type": "speedChange",
+                "distance": 6,
+                "speed": 6
+            },
+            {
+                "type": "speedChange",
+                "distance": 6.3,
+                "speed": 15
+            },
+            {
+                "type": "reset",
+                "distance": 7.959999999999999,
+                "toDistance": 9.9
+            },
+            {
+                "type": "speedChange",
+                "distance": 23.8,
+                "speed": 30
+            },
+            {
+                "type": "reset",
+                "distance": 26.49,
+                "toDistance": 27.29
+            },
+            {
+                "type": "speedChange",
+                "distance": 27.3,
+                "speed": 18
+            },
+            {
+                "type": "reset",
+                "distance": 27.580000000000002,
+                "toDistance": 31.57
+            },
+            {
+                "type": "speedChange",
+                "distance": 49.5,
+                "speed": 6
+            },
+            {
+                "type": "note",
+                "distance": 49.8,
+                "note": "START CONTROL"
+            },
+            {
+                "type": "speedChange",
+                "distance": 49.8,
+                "speed": 12
+            },
+            {
+                "type": "note",
+                "distance": 50.12,
+                "note": "GAS AVAILABLE"
+            },
+            {
+                "type": "reset",
+                "distance": 50.12,
+                "toDistance": 55.21
+            },
+            {
+                "type": "note",
+                "distance": 56,
+                "note": "START CONTROL"
+            },
+            {
+                "type": "speedChange",
+                "distance": 56,
+                "speed": 24
+            },
+            {
+                "type": "reset",
+                "distance": 56.6,
+                "toDistance": 58.6
+            },
+            {
+                "type": "reset",
+                "distance": 70,
+                "toDistance": 72
+            },
+            {
+                "type": "speedChange",
+                "distance": 72.4,
+                "speed": 15
+            },
+            {
+                "type": "speedChange",
+                "distance": 73.9,
+                "speed": 18
+            },
+            {
+                "type": "speedChange",
+                "distance": 77.8,
+                "speed": 24
+            },
+            {
+                "type": "speedChange",
+                "distance": 79.8,
+                "speed": 30
+            },
+            {
+                "type": "speedChange",
+                "distance": 81.3,
+                "speed": 18
+            },
+            {
+                "type": "reset",
+                "distance": 81.39,
+                "toDistance": 85.87
+            },
+            {
+                "type": "end",
+                "distance": 99.3
+            }
+        ]
+    }
+}

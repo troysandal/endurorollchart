@@ -1,0 +1,56 @@
+{
+"title": "Subsequent Free Times",
+"keyTime": 32400,
+"actions": [
+  { "type": {"speed": true}, "distance":0, "speed":30},
+  { "type": {"speed": true}, "distance":3, "speed":6},
+  { "type": {"freeTime": true}, "distance":3.1, "minutes":10 },
+  { "type": {"freeTime": true}, "distance":3.2, "minutes":10 },
+  { "type": {"note": true}, "distance":3.25, "note":"foo"},
+  { "type": {"speed": true}, "distance":3.3, "speed":24},
+  { "type": {"speed": true}, "distance":3.7, "speed":6},
+
+  { "type": {"end": true}, "distance":3.7 }
+]
+}
+
+
+{
+  "title": "Bug in Minute Accuracy for non-tenths distance",
+  "keyTimeInSecondsSinceMidnight": 28800,
+
+  "actions": [
+    {
+      "type": {
+        "speed": true
+      },
+      "startDistance": 0,
+      "speed": 30,
+      "startTimeInSeconds": 0,
+      "distanceToGo": 60,
+      "endTimeInSeconds": 720,
+      "endDistance": 60
+    },
+    {
+      "type": {
+        "speed": true
+      },
+      "startDistance": 60,
+      "speed": 24,
+      "startTimeInSeconds": 720,
+      "distanceToGo": 0,
+      "endTimeInSeconds": 720,
+      "endDistance": 60
+    },
+    {
+      "type": {
+        "note": true
+      },
+      "startDistance": 63.9,
+      "note": "",
+      "endDistance": 63.9,
+      "startTimeInSeconds": 779,
+      "endTimeInSeconds": 779
+    }
+  ]
+}

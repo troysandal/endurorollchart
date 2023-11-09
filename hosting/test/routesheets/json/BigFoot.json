@@ -1,0 +1,182 @@
+{
+  "title": "Big Boot 5-25-97",
+  "routeSheet": {
+    "keyTime": 28800,
+    "actions": [
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 0,
+        "speed": 24
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 5.2,
+        "speed": 26
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 14.3,
+        "speed": 15
+      },
+      {
+        "type": {
+          "reset": true
+        },
+        "distance": 14.3,
+        "toDistance": 19.3
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 20.3,
+        "speed": 24
+      },
+      {
+        "type": {
+          "freeTime": true
+        },
+        "distance": 29.1,
+        "minutes": 15
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 29.5,
+        "speed": 18
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 44.8,
+        "speed": 17
+      },
+      {
+        "type": {
+          "note": true
+        },
+        "distance": 44.85,
+        "note": "BEGIN COMMON COURSE AT 44.85"
+      },
+      {
+        "type": {
+          "note": true
+        },
+        "distance": 46.489999999999995,
+        "note": "GAS AVAIL AT 46.5"
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 46.5,
+        "speed": 12
+      },
+      {
+        "type": {
+          "reset": true
+        },
+        "distance": 46.5,
+        "toDistance": 50.7
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 51.9,
+        "speed": 24
+      },
+      {
+        "type": {
+          "reset": true
+        },
+        "distance": 59.5,
+        "toDistance": 63.1
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 63.1,
+        "speed": 18
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 66.1,
+        "speed": 24
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 70.5,
+        "speed": 19
+      },
+      {
+        "type": {
+          "freeTime": true
+        },
+        "distance": 74.3,
+        "minutes": 10
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 80,
+        "speed": 18
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 91.7,
+        "speed": 20
+      },
+      {
+        "type": {
+          "speed": true
+        },
+        "distance": 97.7,
+        "speed": 24
+      },
+      {
+        "type": {
+          "freeTime": true
+        },
+        "distance": 98.5,
+        "minutes": 5
+      },
+      {
+        "type": {
+          "note": true
+        },
+        "distance": 98.94,
+        "note": "BEGIN COMMON COURSE AT 98.94"
+      },
+      {
+        "type": {
+          "end": true
+        },
+        "distance": 100.5
+      },
+      {
+        "type": {
+          "note": true
+        },
+        "distance": 100.5,
+        "note": "OR SOONER"
+      }
+    ]
+  }
+}

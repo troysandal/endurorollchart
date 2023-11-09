@@ -1,0 +1,164 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.error-msg {
+  color: red;
+}
+
+a {
+  color: #00B7FF;
+}
+
+input.editable { font-weight: bold; }
+input.distance { width:5em; }
+input.minutes { width:5em; }
+input.speed { width:5em; }
+input.note { width:15em; }
+input.lap { width:2em; }
+input.time { width:6em; }
+
+
+/*************************** Route Sheet Viewer ***************************/
+
+@media print {
+  nav {
+    display: none;
+  }
+}
+
+.title {
+  font-family: Verdana, Arial, Helvetica;
+  text-align: center;
+  font-size: 24pt;
+}
+
+.routeSheetContainer {
+  width: 100%;
+  margin-top: 20px;
+}
+
+table.routeSheet {
+  border-collapse: collapse;
+  font-family: "Courier New", "Courier";
+  font-size: 12pt;
+  border: 1px solid #000;
+
+  display:table;
+  margin: 0 auto;
+}
+
+table.routeSheet td {
+  padding: 0px 5px;
+  margin: 0px;
+  border: 1px solid #000;
+}
+
+table.routeSheet tbody td {
+  text-align:right;
+  vertical-align: top;
+}
+
+table.routeSheet tbody td.actionType {
+  text-align:left;
+  white-space: nowrap;
+}
+
+table.routeSheet tbody td.note {
+  text-align:left;
+}
+
+table.routeSheet thead {
+  text-align:center;
+  font-weight: 600;
+}
+
+
+/*************************** JART Styles ***************************/
+
+@media print {
+  .hide_when_printing {
+    display:none;
+  }
+}
+
+.zero_key_time {
+  margin: 10px;
+}
+
+
+/** These are TR properties only.  TD cell props are below */
+.jart_title { background-color: #fff;  text-align: center; font-size: 20pt; }
+.jart_keyTime { background-color: #fff;  text-align: center; font-size: 14pt; }
+.jart_keyTime td { padding:10px; }
+.jart_speed { background-color: #ccffcc;  text-align: center; }
+.jart_possible { background-color: #fff;  text-align: center; }
+.jart_reset { background-color: #ffcccc;  text-align: center; }
+.jart_resetTo0 { background-color: #ffffcc;  text-align: center; }
+.jart_gasStop { background-color: #ffffcc;  text-align: center; }
+.jart_freeTime { background-color: #ccccff;  text-align: center; }
+.jart_freeZone { background-color: #ccccff;  text-align: center; }
+.jart_known { background-color: #ccffff;  text-align: center; }
+.jart_start { background-color: #ccffff;  text-align: center; }
+.jart_note { background-color: #ffffff;  text-align: center; }
+.jart_end { background-color: #ffffff;  text-align: center; }
+
+table.jart {
+  border-collapse: collapse;
+  width: 2.125in;
+  font-family: Helvetica;
+  font-size: 25pt;
+  border: 1px dotted #000;
+  padding: 0;
+  margin: 0;
+}
+
+table.jart td {
+  border: 1px dotted #000;
+  margin: 0;
+}
+
+.action_name {
+  font-size: 20pt;
+  text-transform: uppercase;
+  padding: 5pt 0pt;
+}
+
+table.jart tr.jart_note td {
+}
+
+.note_body {
+  padding: 10pt 0pt;
+  font-size: 20pt;
+  font-weight: auto;
+}
+
+table.jart tr.time_speed_distance td {
+  font-weight: 600;
+}
+
+table.jart tr.jart_possible td:last-child {
+  font-size: 20pt;
+  vertical-align: middle;
+}
+
+.multi_col_jart tbody tr td {
+  vertical-align: top;
+}
+
+.jart_leader { height:2in; }
+
+/*************************** Import ***************************/
+
+#import_page textarea#rs {
+  font-family: 'Courier New', Courier, monospace
+}
+
+#import_page input[type="file"] {
+  display: none;
+}
+
+#import_page #preview {
+  display:none
+}

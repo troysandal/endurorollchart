@@ -1,0 +1,35 @@
+{{#> "layouts/layout.hbs"}}
+<div class="container">
+  <style type="text/css">
+    table.routeSheet {
+      font-family: courier new;
+      margin-top: 20px;
+    }
+  </style>
+  <h1 id=""></h1>
+
+  <h3>Route Sheet</h3>
+  <div style="font-family:courier new">
+    <div>Author : <span id="author"></span></div>
+    <div>Title : <span id="title"></span></div>
+    <div>Key Time : <span id="keyTime"></span></div>
+    <div>End Time : <span id="endTime"></span></div>
+    <div>Free Time : <span id="freeTime"></span></div>
+    <div>Route Distance : <span id="distance"></span></div>
+    <div>Ground Distance: <span id="distanceOnGround"></span></div>
+    <div>Reset Distance: <span id="resetDistance"></span></div>
+    <div>Laps: <span id="totalLaps"></span></div>
+  </div>
+
+  <div>
+    <button class="btn btn-default" id="edit" style="display:none">Edit</button>
+    <button class="btn btn-default" id="JART">JART Chart</button>
+    <button class="btn btn-default" id="print">Print</button>
+    <button class="btn btn-default" id="download">Download RS</button>
+  </div>
+
+  <div id="container" />
+
+  <script type="module" src="/src/pages/enduro.ts"></script>
+</div>
+{{/ "layouts/layout.hbs"}}

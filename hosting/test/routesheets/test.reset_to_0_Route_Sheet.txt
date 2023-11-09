@@ -1,0 +1,11 @@
+
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          60 mph  54.00  54.00  8:54:00
+ 8:54:00  54.00 Speed          30 mph   9.00   1.00  9:12:00
+ 8:58:00  56.00 Reset to 0                                  
+ 9:04:12   3.10 Note       GAS
+ 9:10:00   6.00 Reset to 0                                  
+ 9:12:00   1.00 Speed          18 mph   0.00   1.00  9:12:00

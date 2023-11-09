@@ -1,0 +1,30 @@
+2014 Crazy Miner
+Family Enduro
+Georgetown, CA
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          12 mph   2.00   2.00  8:10:00
+ 8:10:00   2.00 Speed          17 mph   8.50  10.50  8:55:00
+ 8:35:25   9.20 Free Time      15 min                8:50:25
+ 8:55:00  10.50 Speed          27 mph   4.50  15.00  9:05:00
+ 8:55:00  10.50 Start                                       
+ 9:05:00  15.00 Speed          15 mph   8.00  23.00  9:52:00
+ 9:36:12  22.80 Free Time      15 min                9:51:12
+ 9:52:00  23.00 Speed          24 mph   0.40  23.40  9:53:00
+ 9:52:00  23.00 Start                                       
+ 9:53:00  23.40 Speed          28 mph   2.80  26.20  9:59:00
+ 9:59:00  26.20 Speed          12 mph   2.00   2.00 10:39:00
+ 9:59:00  26.20 Note       Gas Available @ 26.2
+ 9:59:00  26.20 Free Time      30 min               10:29:00
+10:29:00  26.20 Reset to 0                                  
+10:39:00   2.00 Speed          17 mph   8.50  10.50 11:24:00
+11:04:25   9.20 Free Time      15 min               11:19:25
+11:24:00  10.50 Speed          27 mph   4.50  15.00 11:34:00
+11:24:00  10.50 Start                                       
+11:34:00  15.00 Speed          15 mph   8.00  23.00 12:21:00
+12:05:12  22.80 Free Time      15 min               12:20:12
+12:21:00  23.00 Speed          24 mph   0.40  23.40 12:22:00
+12:21:00  23.00 Start                                       
+12:22:00  23.40 Speed          28 mph   2.80  26.20 12:28:00
+12:28:00  26.20 Speed          12 mph   0.80  27.00 12:32:00
+12:32:00  27.00 End                                         

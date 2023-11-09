@@ -1,0 +1,51 @@
+{{#> "layouts/layout.hbs"}}
+<div class="container">
+  
+  <h1>Account Settings</h1>
+  <div>
+    <p>User Name: <span id="userName" /></p>
+    <p>Email: <span id="email" /></p>
+  </div>
+  <div>
+    <button id="changeUserName" class="btn btn-default">Change User Name</button>
+  </div>
+
+  <h1>Your Enduros</h1>
+  <div>
+    <button id="create" class="btn btn-default">
+      <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+      New Enduro</button>
+    <button id="import" class="btn btn-default">Import RS File</button>
+  </div>
+
+  <table style="margin-top:10px" hidden>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+  <br />
+  <p id="noEnduros" hidden>
+    You haven't created any enduros yet. Use the buttons above to create
+    a new one or import one from your computer.
+    </div>
+
+  <template id="enduroTemplate">
+    <tr>
+        <td><div><a href="/enduro/{{id}}/edit">{{title}}</a></div></td>
+        <td>
+          <button class="routeSheet btn btn-default" routeId="{{id}}">Route Sheet</button>
+          <button class="jart btn btn-default" routeId="{{id}}">JART</button>
+          <button class="delete btn btn-default" routeId="{{id}}">Delete</button>
+        </td>
+      </tr>
+  </template>
+  <script type="module" src="/src/pages/user.ts"></script>
+</div>
+
+{{/ "layouts/layout.hbs"}}

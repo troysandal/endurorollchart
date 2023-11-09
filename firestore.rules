@@ -1,0 +1,35 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    match /users/{userId} {
+      allow get: if true;
+      allow list: if true;
+
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if false;
+    }
+
+    // Enduros
+
+    function isEnduroOwner(request, enduroId) {
+      return request.auth != null && request.auth.uid == getEnduroOwnerId(enduroId);
+    }
+
+    function getEnduroOwnerId(enduroId) {
+      return get(/databases/$(database)/documents/enduros/$(enduroId)).data.userId
+    }
+
+    // function isVerified(request) {
+    //   return request.auth.token.email_verified == true;
+    // }
+
+    match /enduros/{enduroId} {
+      allow read: if true;
+
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isEnduroOwner(request, enduroId);
+    }
+  }
+}

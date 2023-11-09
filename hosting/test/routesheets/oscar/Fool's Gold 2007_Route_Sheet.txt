@@ -1,0 +1,33 @@
+Fool's Gold Enduro 2007
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          15 mph   4.00   4.00  8:16:00
+ 8:11:36   2.90 Note       2.9mi Speedo Check
+ 8:16:00   4.00 Speed          20 mph   4.00   8.00  8:28:00
+ 8:28:00   8.00 Speed          24 mph   6.80  14.80  8:45:00
+ 8:45:00  14.80 Speed          30 mph   6.00  20.80  8:57:00
+ 8:57:00  20.80 Speed          24 mph   3.60  24.40  9:06:00
+ 8:57:36  21.04 Note       Start - Common Course
+ 9:06:00  24.40 Speed           6 mph   0.80  25.20  9:29:00
+ 9:14:00  25.20 Note       End - Common Course
+ 9:14:00  25.20 Gas Stop                                    
+ 9:14:00  25.20 Free Time      15 min                9:29:00
+ 9:29:00  25.20 Speed          24 mph  20.80  46.00 10:33:00
+ 9:30:15  25.70 Reset To     27.70 mi   2.00  27.70  9:35:15
+10:00:00  37.60 Free Time      12 min               10:12:00
+10:33:00  46.00 Speed          16 mph   5.60  51.60 10:54:00
+10:54:00  51.60 Speed          30 mph   4.00  55.60 11:02:00
+11:00:59  55.09 Note       Start - Common Course
+11:02:00  55.60 Speed          24 mph   2.40  58.00 11:08:00
+11:08:00  58.00 Speed          18 mph   7.20  65.20 11:44:00
+11:12:10  59.25 Note       End - Common Course
+11:12:10  59.25 Gas Stop                                    
+11:12:10  59.25 Reset To     60.40 mi   1.15  60.40 11:16:00
+11:16:00  60.40 Free Time      12 min               11:28:00
+11:44:00  65.20 Speed          17 mph   6.80  72.00 12:13:00
+12:00:57  70.00 Free Time       5 min               12:05:57
+12:13:00  72.00 Speed          22 mph   8.80  80.80 12:37:00
+12:37:00  80.80 Speed          11 mph   2.20  83.00 12:49:00
+12:49:00  83.00 Known                                       

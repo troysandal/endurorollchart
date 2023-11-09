@@ -1,0 +1,27 @@
+{{#> "layouts/layout.hbs"}}
+<div class="container" id="import_page">
+  <h2>RS File Import</h2>
+  <div>Instructions: Enter the contents of an RS file in the box below or use
+    the "Choose RS File" button to upload one. A preview of your route sheet will
+    display at the bottom of the page.  When done press Import.
+  </div>
+
+  <div>
+    <button id="choose" class="btn btn-default" type="button">
+      Choose RS File
+    </button>
+    <input type="file" accept=".rs">
+    <button id="import" class="btn btn-default" type="button">Import</button>
+  </div>
+
+  <textarea id="rs" rows="20" cols="50"></textarea>
+
+  <div id="preview">
+    <h3>RouteSheet Preview</h3>
+    <div id="routeSheet"></div>
+  </div>
+</div>
+
+
+<script type="module" src="/src/pages/import.ts"></script>
+{{/ "layouts/layout.hbs"}}

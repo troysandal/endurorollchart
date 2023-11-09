@@ -1,0 +1,22 @@
+{{#> "layouts/layout.hbs"}}
+<style>
+  nav {
+    display: none;
+  }
+</style>
+<link rel='stylesheet' href='/stylesheets/print_jart.css' />
+
+<div class="hide_when_printing zero_key_time">
+  <input id="zeroKeyTime" type="checkbox">
+    <span>Start at Zero (00) Minutes</span>
+  </input>
+  <input id="timeInLeftColumn" type="checkbox" checked>
+    <span>Show Minute in Left Column</span>
+  </input>
+</div>
+
+<div id="container"/>
+
+
+<script type="module" src="/src/pages/jart.ts"></script>
+{{/ "layouts/layout.hbs"}}

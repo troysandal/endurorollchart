@@ -1,0 +1,19 @@
+@media print {
+  .multi_col_jart {
+    -webkit-print-color-adjust: exact;
+    page-break-after: always;
+  }
+
+  @page {
+    -webkit-print-color-adjust: exact;
+    /* intersection of A4 and Letter */
+    size: 210mm 279mm;
+    margin: 10mm 0mm 0mm 25mm;
+  }
+
+  body {
+    width: 100%;
+    margin: 10mm 0mm 0mm 25mm;
+    padding: 0;
+  }
+}

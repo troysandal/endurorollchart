@@ -1,0 +1,8 @@
+
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          30 mph   6.00   6.00  8:12:00
+ 8:12:00   6.00 Speed          24 mph   0.39   6.39  8:12:59
+ 8:12:59   6.39 Note       GAS

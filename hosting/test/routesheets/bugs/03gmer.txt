@@ -1,0 +1,15 @@
+The bug in ECR manifests itself with consecutive resets.  The Start Time of the second reset below is 1 second too high.  I believe this is because they are computing the Start Time of the 2nd reset using the previous reset's Start Time.  Because Resets don't have to be on 1/10th's of a m/km their time may/can have a fractional component which will introduce this error.
+
+The only way to fix this was to modify the exported route sheet - see below.
+
+Green Marble 2003
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+ 8:00:00   0.00 Speed          18 mph  23.10  23.10  9:17:00
+ 9:17:00  23.10 Speed          30 mph   8.50  31.60  9:34:00
+ 9:18:11  23.69 Reset To     24.05 mi   0.36  24.05  9:18:54
+ # Here's the bad one.
+ 9:23:45  26.47 Reset To     31.60 mi   5.13  31.60  9:34:00
+ 9:34:00  31.60 Speed          18 mph  19.20  50.80 10:38:00

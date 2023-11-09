@@ -1,0 +1,6 @@
+Again, on 100ths we see bad rounding for a Start Time.
+
+
+10:09:00  42.20 Speed          22 mph   5.50  47.70 10:24:00
+10:23:59  47.69 Note       GAS AVAIL AT 47.7
+10:24:00  47.70 Speed          18 mph   9.90  57.60 10:57:00

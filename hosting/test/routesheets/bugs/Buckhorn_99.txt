@@ -1,0 +1,14 @@
+#1 - I found a bug in ECR in how they compute the end time of reset rows.  I verified this by adding a Note at the same distance that the reset ends on.  In theory this Note should have the same Start Time as the reset End Time but they don't.
+
+#2 - The note at 39.99 has a Start Time of 9:59:59 but we calculate it to 9:58:58.28571429.  Note the decimal component will round down.  Not sure how ECR got this wrong.
+
+Buckhorn 10-31-99
+
+
+   Start  Start                        Miles    End      End
+    Time   Mile Action                 To Go   Mile     Time
+...
+9:45:43  35.00 Reset To     35.50 mi   0.50  35.50  9:47:08
+9:47:09  35.50 Note       Rounding Bug
+9:59:59  39.99 Note       GAS AVAIL AT 40.0
+...

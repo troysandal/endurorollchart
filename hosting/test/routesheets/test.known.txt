@@ -1,0 +1,4 @@
+# Enduro Route Sheet
+     speed   0.00  30
+     known   7.00
+     speed  11.00  15
