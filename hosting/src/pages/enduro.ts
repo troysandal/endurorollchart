@@ -54,7 +54,7 @@ async function init() {
     enduro = fromJSON(routeJSON)
     const routeSheet:RouteSheet = enduro.routeSheet;
     const snapshot = await getDoc(doc(getFirebase().firestore, "users", routeJSON['userId']))
-    const userData = snapshot.data()
+    const userData = snapshot.data() ?? { userName: 'Anonymous Rider' }
 
     $('#title').text(enduro.title);
     $('#author').text(userData.userName);
