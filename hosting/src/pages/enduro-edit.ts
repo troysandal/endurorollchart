@@ -5,7 +5,7 @@ import Util from '../timekeeping/util'
 import { RouteSheetEditor } from './routesheet.editor'
 import { SpeedBehavior } from './behaviors'
 import { onAuth, getEnduro, getEnduroID, getFirebase } from '../firebase'
-import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 
 let routeId: string | null
 let enduro:Enduro
@@ -63,7 +63,7 @@ function setupUI() {
 
     if (routeId) {
       try {
-        await setDoc(doc(db, "enduros", routeId), {
+        await updateDoc(doc(db, "enduros", routeId), {
           userId: getFirebase().auth.currentUser?.uid,
           updatedAt: serverTimestamp(),
           ...json
