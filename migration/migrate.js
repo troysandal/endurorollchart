@@ -63,6 +63,9 @@ function fixDmitry(db) {
   // Fixup Troy
   const troy = db.users.find((user) => user.username === "troy")
   troy.username = "troysandal@gmail.com"
+
+  const oscar = db.users.find((user) => user.username === "Oscar")
+  oscar.username = "endurojs@owracing.net."
 }
 
 console.log(`#Users ${db.users.length}`)
