@@ -1,12 +1,28 @@
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { getFirebase } from '../firebase'
-import { Timestamp, addDoc, collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore'
+import { Timestamp, addDoc, collection, doc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from 'firebase/firestore'
 import { fromJSON, toJSON } from '../timekeeping/serializeJSON'
-// import { fromJSON, toJSON } from '../timekeeping/serializeJSON'
+
+const { auth, firestore } = getFirebase()
+
+document.getElementById('publishAll')?.addEventListener('click', async () => {
+  const q = query(collection(firestore, "enduros"))
+  const snapshot = await getDocs(q)
+
+  const rows = snapshot.docs.map((doc) => {
+    return { id: doc.id, ...doc.data() }
+  })
+
+  for (let row of rows) {
+    await updateDoc(doc(firestore, "enduros", row.id), {
+      updatedAt: serverTimestamp(),
+      isPublished: true,
+    });  
+  }
+})
 
 document.getElementById('migrate')?.addEventListener('click', migrate)
 
-const { auth, firestore } = getFirebase()
 
 async function migrate() {
 
@@ -19,6 +35,7 @@ async function migrate() {
     if (user.username !== 'troysandal@gmail.com') {
       continue
     }
+    console.log('---> troysandal@gmail.com <---')
     user.uid = auth.currentUser?.uid
     db.usersMap[user.id].entry.uid = user.uid
     await createEndurosForUser(db, user.uid)
@@ -34,6 +51,8 @@ async function migrate() {
     const isEmail = user.username.indexOf('@') != -1
     console.log(`${user.username} - ${isEmail}`)
     if (isEmail) {
+      console.log('\n')
+      console.log(`---> ${user.username} <---`)
       user.uid = await createUser(
         user.username, 
         user.username.split('@')[0], 
@@ -53,12 +72,14 @@ async function migrate() {
 
   for (let user of db.users) {
     const isEmail = user.username.indexOf('@') != -1
-    console.log(`${user.username} - ${isEmail}`)
+
     if (!isEmail) {
       user.uid = anonymousUid
       db.usersMap[user.id].entry.uid = user.uid
     }
   }
+  console.log('\n')
+  console.log('---> troy@photagonist.com <---')
   await createEndurosForUser(db, anonymousUid)
 }
 
@@ -71,10 +92,6 @@ async function createEndurosForUser(db, uid: string) {
     const createdAtDate = new Date(route.createdAt.$date)
     const updatedAtDate = new Date(route.updatedAt.$date)
 
-    console.log(`name ${route.title}`)
-    console.log(`created: ${createdAtDate}`)
-    console.log(`updated: ${updatedAtDate}`)
-
     const enduro = fromJSON(route)
     const json = toJSON(enduro)
 
@@ -82,9 +99,10 @@ async function createEndurosForUser(db, uid: string) {
       userId: uid,
       createdAt: Timestamp.fromDate(createdAtDate),
       updatedAt: Timestamp.fromDate(updatedAtDate),
+      isPublished: true,
       ...json
     }
-    console.log(newDoc)
+    console.log(`Created ${newDoc.title}`)
     console.assert(uid === auth.currentUser?.uid, `UID Wrong - ${uid} !== ${auth.currentUser?.uid}`)
     try {
       await addDoc(collection(firestore, "enduros"), newDoc);
@@ -119,6 +137,7 @@ async function createUser(email: string, userName: string, password: string) {
     })
     uid = userCredential.user.uid
   } else {
+    signInWithEmailAndPassword(auth, email, password)
     console.log(`user ${userName} already created as ${uid}`)
   }
 

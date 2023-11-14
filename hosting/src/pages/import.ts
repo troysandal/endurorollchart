@@ -25,7 +25,8 @@ $('#import').on('click', async function () {
       userId: getFirebase().auth.currentUser?.uid,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
-  ...json
+      isPublished: false,
+      ...json
     });
     console.log(`Created new enduro ${docRef.id}`)
     window.location.href = `/enduro-edit.html?id=${docRef.id}`
