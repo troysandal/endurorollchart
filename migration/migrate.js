@@ -65,7 +65,7 @@ function fixDmitry(db) {
   troy.username = "troysandal@gmail.com"
 
   const oscar = db.users.find((user) => user.username === "Oscar")
-  oscar.username = "endurojs@owracing.net."
+  oscar.username = "endurojs@owracing.net"
 }
 
 console.log(`#Users ${db.users.length}`)
