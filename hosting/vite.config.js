@@ -9,13 +9,5 @@ export default defineConfig({
     handlebars({
         root: './src'
     })
-  ],
-  // build: {
-  //   rollupOptions: {
-  //     input: {
-  //       main: resolve(__dirname, "/src/pages/index.hbs.html"),
-  //       enduro: resolve(__dirname, "/src/pages/enduro.hbs.html")
-  //     },
-  //   },
-  // },
+  ]
 });
