@@ -58,7 +58,7 @@ async function init() {
 
     $('#title').text(enduro.title);
     $('#author').text(userData.userName);
-    $('#createdAt').text(routeJSON.createdAt.toDate().toLocaleDateString());
+    $('#createdAt').text(routeJSON['createdAt'].toDate().toLocaleDateString());
     $('#keyTime').text(Util.secondsToTime(routeSheet.getKeyTime(), 0));
     $('#endTime').text(Util.secondsToTime(routeSheet.getKeyTime(), routeSheet.getDuration()));
     $('#freeTime').text(Util.secondsToTime(0, routeSheet.getFreeTime()));
