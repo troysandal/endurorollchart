@@ -8,8 +8,8 @@ function fb2JSON(fileName) {
 
 function readDB() {
   return {
-    users: fb2JSON('users.json'),
-    routes: fb2JSON('routes.json')
+    users: fb2JSON('users2.json'),
+    routes: fb2JSON('routes2.json')
   }
 }
 
