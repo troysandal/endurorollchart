@@ -39,20 +39,24 @@ function addNote(distance, note) {
 describe('Enduro creation', () => {
   beforeEach(() => {
     // seed a user in the DB that we can control from our tests
-    cy.register();
+    cy.login();
   })
 
   it('creates new enduro', () => {
-    cy.visit(`/user`)
+    cy.visit(`/user.html`)
 
     cy.contains('New Enduro')
 
     cy.get('button#create').click()
     cy.url().should('include', '/enduro')
+
+    cy.get('textarea#title').should('have.value', 'New Enduro')
+
     const title = 'My\nAwesome\nEnduro'
     cy.get('textarea#title')
       .clear()
-      .type(title).should('have.value', title)
+      .type(title)
+      .should('have.value', title)
 
     /* Route Actions
       key time 9:30

@@ -15,12 +15,13 @@
     "test:debug": "mocha --inspect"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.9.8",
     "@types/chai": "^4.3.6",
     "@types/mocha": "^10.0.2",
     "@vituum/vite-plugin-handlebars": "^1.0.0",
     "chai": "^4.3.10",
-    "cypress": "^9.3.1",
+    "cypress": "^13.5.1",
+    "cypress-firebase": "^3.0.2",
+    "firebase-admin": "^11.11.0",
     "mocha": "^10.2.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2",

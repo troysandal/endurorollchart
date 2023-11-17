@@ -1,37 +1,5 @@
 /// <reference types="cypress" />
 
-import Enduro from '../../src/timekeeping/enduro'
-import {fromRS} from '../../src/timekeeping/serializeRS'
-import {Versions} from '../../src/timekeeping/serializeJSON'
-
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-// add new command to the existing Cypress interface
-// see https://github.com/cypress-io/add-cypress-custom-command-in-typescript/blob/master/cypress/support/commands.ts
 declare global {
   namespace Cypress {
     // type Greeting = {
@@ -40,51 +8,70 @@ declare global {
     // }
 
     interface Chainable {
-      register: typeof register
       seedEnduro: typeof seedEnduro
-      newCredentials: typeof newCredentials
     }
   }
 }
 
-export function newCredentials(email?, password = 'password') {
-  const currentUser = {
-    username: email ?? `user@domain${Math.floor(Math.random() * 1000000)}.com`,
-    password
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/database';
+import 'firebase/compat/firestore';
+import { attachCustomCommands } from 'cypress-firebase';
+
+const config = {
+  firebase: {
+    apiKey: "AIzaSyAgkQQRVx00IO54FZCbgAR7YX-h7mDwPZ0",
+    authDomain: "endurorollchart.firebaseapp.com",
+    projectId: "endurorollchart",
+    storageBucket: "endurorollchart.appspot.com",
+    messagingSenderId: "822901650009",
+    appId: "1:822901650009:web:6565b1bb3094cb08003748"
+  },
+  useEmulator: true
+}
+function connectToEmulators({ auth, firestore }) {
+  if (config.useEmulator) {
+    console.log('using emulators')
+    firestore.settings({
+      experimentalForceLongPolling: true,
+      experimentalAutoDetectLongPolling: false,
+      merge: true,
+      host: 'localhost:8080',
+      ssl: false
+    });
+    firestore.useEmulator('localhost', 8080)
+    auth.useEmulator('http://localhost:9099')
   }
-  return cy.wrap(currentUser).as('currentUser')
-}
-Cypress.Commands.add('newCredentials', newCredentials)
-
-
-export function register(email?, password?) {
-  return cy
-    .newCredentials(email, password)
-    .then((currentUser) => {
-      cy.clearCookies()
-      .request('POST', '/register', currentUser)
-      .then((response) => {
-        expect(response.status).to.equal(200)
-    })
-  })
 }
 
-Cypress.Commands.add('register', register)
+export function setupFirebase() {
+  const isConfigured = firebase.apps.length > 0
+  const firebaseApp = firebase.initializeApp(config.firebase);
+  const firestore = firebase.firestore()
+  const auth = firebase.auth()
+  const services = { firebaseApp, firestore, auth, isConfigured }
+  
+  if (!services.isConfigured) {
+    connectToEmulators(services)
+  }
+  attachCustomCommands({ Cypress, cy, firebase})
+  return services
+}
+
+setupFirebase()
 
 
 export function seedEnduro() {
-  return cy.fixture('allactions.rs')
-    .then((rsEnduro) => {
-      const enduro:Enduro = fromRS(rsEnduro)
-      const route = Versions['1'].to(enduro)
-      return route
+  const routeId = 'asdf123'
+  return cy.fixture('allactions.json')
+    .then((enduro) => {
+      enduro.userId = Cypress.env('TEST_UID')
+      enduro.createdAt = firebase.firestore.Timestamp.now()
+      enduro.updatedAt = firebase.firestore.Timestamp.now()
+      return cy.callFirestore('set', `enduros/${routeId}`, enduro)
     })
-    .then((route) => {
-      return cy.request('POST', '/import', { route })
-    })
-    .then((response) => {
-      expect(response.body).to.haveOwnProperty('id')
-      const routeId = response.body.id
+    .then(() => {
       cy.wrap(routeId).as('routeId')
     })
 }

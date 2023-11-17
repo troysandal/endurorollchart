@@ -12,5 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "firebase": "^10.4.0"
+  },
+  "devDependencies": {
+    "cypress": "^13.5.1"
   }
 }

@@ -5,12 +5,12 @@ describe('Enduro Route Sheet', () => {
     // seed a user in the DB that we can control from our tests
     // every password is the same so we can login as that user if needed
     cy
-      .register()
+      .login()
       .seedEnduro()
   })
 
   it('displays enduro with statistics', function() {
-    cy.visit(`/enduro/${this.routeId}`)
+    cy.visit(`/enduro.html?id=${this.routeId}`)
 
     // Route Statistics
     cy.contains('Reset Distance')
@@ -22,7 +22,7 @@ describe('Enduro Route Sheet', () => {
   })
 
   it('prints clean routesheet', function() {
-    cy.visit(`/enduro/${this.routeId}/print`)
+    cy.visit(`/enduro-print.html?id=${this.routeId}`)
 
     // Route Statistics
     cy.contains('Reset Distance').should('not.exist')

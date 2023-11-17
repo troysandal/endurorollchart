@@ -30,6 +30,8 @@ lib-cov
 # Cypress
 hosting/cypress/videos/*
 hosting/cypress/screenshots/*
+hosting/cypress.env.json
+hosting/serviceAccount.json
 
 # Coverage directory used by tools like istanbul
 coverage

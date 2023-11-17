@@ -3,15 +3,14 @@
 describe('Uploading', () => {
   beforeEach(() => {
     // register a new user
-    cy.register()
+    cy.login()
   })
 
   it('can upload RS files', function() {
     cy
       .fixture('allactions.rs')
       .then((rsEnduro) => {
-        cy.visit('/import')
-        cy.contains(`Hi ${this.currentUser.username}`)
+        cy.visit('/import.html')
         cy.get('textarea[id=rs]').type(rsEnduro)
         cy.get('button#import').click()
         cy.url().should('include', '/enduro')

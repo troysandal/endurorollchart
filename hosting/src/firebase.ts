@@ -3,7 +3,8 @@ import {
   getFirestore,
   doc,
   getDoc,
-  connectFirestoreEmulator
+  connectFirestoreEmulator,
+  initializeFirestore
 } from 'firebase/firestore'
 import { connectAuthEmulator, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { config } from './config'
@@ -11,6 +12,10 @@ import { config } from './config'
 function initializeServices() {
   const isConfigured = getApps().length > 0
   const firebaseApp = initializeApp(config.firebase)
+  if (window['Cypress']) {
+    // Needed for Firestore support in Cypress (see https://github.com/cypress-io/cypress/issues/6350)
+    initializeFirestore(firebaseApp, {experimentalForceLongPolling: true})
+  }
   const firestore = getFirestore(firebaseApp)
   const auth = getAuth(firebaseApp)
   return { firebaseApp, firestore, auth, isConfigured }

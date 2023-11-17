@@ -1,0 +1,65 @@
+{
+  "isPublished": true,
+  "title": "All Possible Actions",
+  "userId": "kB5lg9dlsDscMmXAndjnJy5EFs4M",
+  "version": "2",
+  "routeSheet": {
+    "options": {},
+    "keyTime": 30600,
+    "actions": [
+      {
+        "distance": 0,
+        "type": "speedChange",
+        "speed": 18
+      },
+      {
+        "distance": 3.31,
+        "type": "reset",
+        "toDistance": 3.96
+      },
+      {
+        "distance": 4,
+        "minutes": 5,
+        "type": "freeTime"
+      },
+      {
+        "note": "sadf",
+        "distance": 4.3,
+        "type": "note"
+      },
+      {
+        "distance": 9,
+        "type": "resetToZero"
+      },
+      {
+        "distance": 3,
+        "type": "gasStop"
+      },
+      {
+        "distance": 3,
+        "type": "known"
+      },
+      {
+        "distance": 8.5,
+        "type": "freeZone",
+        "toDistance": 9
+      },
+      {
+        "distance": 9,
+        "type": "start"
+      },
+      {
+        "distance": 12,
+        "type": "end"
+      }
+    ]
+  },
+  "createdAt": {
+    "seconds": 1700087670,
+    "nanoseconds": 928000000
+  },
+  "updatedAt": {
+    "seconds": 1700087670,
+    "nanoseconds": 928000000
+  }
+}
