@@ -58,9 +58,6 @@ async function userNameAlreadyExists(userName: string) {
   return querySnapshot.data.length > 0
 }
 
-// TODO - Ensure email & displayName are valid (length, unique)
-// TODO - Update profile with displayname (for future use)
-
 document.getElementById('registerForm')?.addEventListener('submit', signUp)
 
 async function registerUser(userName: string, email: string, password: string) {

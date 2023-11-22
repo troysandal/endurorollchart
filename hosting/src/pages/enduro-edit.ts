@@ -10,7 +10,7 @@ import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/fi
 let routeId: string | null
 let isPublished: boolean = false
 let enduro:Enduro
-let routeSheet:RouteSheet // TODO - you dont' need this alias here right?
+let routeSheet:RouteSheet
 
 onAuth(async (user) => {
   if (!user) {
@@ -23,7 +23,7 @@ onAuth(async (user) => {
   if (routeId !== null) {
     const route = await getEnduro(routeId)
     if (!route) {
-      // TODO - Show Error Message 
+      window.alert('Sorry, Enduro not found.')
       console.warn(`Enduro ${routeId} not found`)
       return
     }
