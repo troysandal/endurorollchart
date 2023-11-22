@@ -84,7 +84,7 @@ async function migrate() {
       user.uid = await createUser(
         user.username, 
         user.username.split('@')[0], 
-        'you.will.Never.gu3ss.this.password')
+        Math.round(Math.random() * 10000000000000).toString())
       db.usersMap[user.id].entry.uid = user.uid
       await createEndurosForUser(db, user.uid)
     }
@@ -94,7 +94,7 @@ async function migrate() {
   const anonymousUid = await createUser(
     'troy@photagonist.com',
     'Enduro Rider',
-    'pretty.1.Is.forage'    
+    Math.round(Math.random() * 10000000000000).toString()
   )
   console.log(`Anon uid = ${anonymousUid}`)
 
