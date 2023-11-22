@@ -71,3 +71,7 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+# Editor directories and files
+.DS_Store
+
