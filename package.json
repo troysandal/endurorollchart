@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "firebase deploy --only firestore",
     "firebase": "firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
