@@ -22,7 +22,7 @@ cd ../hosting
 npm i
 
 # Start the Firebase App
-npm firebase
+npm run firebase
 
 # Once started open http://localhost:5000
 ```
