@@ -26,12 +26,6 @@
       "skipFiles": ["<node_internals>/**", "node_modules/**"]
     },
     {
-      "type": "chrome",
-      "name": "http://localhost:5000/enduroEdit.html?id=ieSvfi0QEcY67BCnt0Vm",
-      "request": "launch",
-      "url": "http://localhost:5000/enduroEdit.html?id=ieSvfi0QEcY67BCnt0Vm"
-    },
-    {
       "name": "Debug Mocha",
       "cwd": "${workspaceFolder}/tests",
       "request": "launch",
