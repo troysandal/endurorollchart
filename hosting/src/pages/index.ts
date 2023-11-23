@@ -1,4 +1,4 @@
-import { getFirebase } from './firebase'
+import { getFirebase } from '../firebase'
 import { collection, CollectionReference, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 
 createStream(collection(getFirebase().firestore, 'enduros'))

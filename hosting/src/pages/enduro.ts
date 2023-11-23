@@ -33,7 +33,6 @@ function saveAs(blob: Blob, fileName: string) {
   link.click();
 }
 
-
 $('#print').on('click', function() {
   window.location.pathname = "enduroPrint.html";
 });

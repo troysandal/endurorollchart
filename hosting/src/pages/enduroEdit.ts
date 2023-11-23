@@ -17,6 +17,7 @@ onAuth(async (user) => {
     console.warn('must be logged in to save enduro')
     alert('You will not be able to save this enduro as you are not logged in.')
     document.getElementById('save')?.remove()
+    document.getElementById('publish')?.remove()
   }
   routeId = getEnduroID()
 
@@ -155,7 +156,7 @@ async function togglePublishState() {
 function updatePublishButton() {
   const button = $('#publish')
   
-  // Unsaved enduros cannot be published, avoids tons of dead enduros
+  // Unsaved enduros cannot be published
   if (routeId === null) {
     button.hide()
     return
