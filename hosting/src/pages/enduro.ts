@@ -2,7 +2,7 @@ import { getFirebase, getEnduro, getEnduroID } from '../firebase'
 import RouteSheet from '../timekeeping/routesheet'
 import {fromJSON} from '../timekeeping/serializeJSON'
 import { toRS } from '../timekeeping/serializeRS'
-import {RouteSheetViewer} from './routesheet.view'
+import {RouteSheetViewer} from './routesheetView'
 import Util from '../timekeeping/util'
 import Enduro from '../timekeeping/enduro'
 import { doc, getDoc } from 'firebase/firestore'
@@ -10,7 +10,7 @@ import { doc, getDoc } from 'firebase/firestore'
 let enduro:Enduro
 
 $('#edit').on('click', function() {
-  window.location.pathname = "enduro-edit.html";
+  window.location.pathname = "enduroEdit.html";
 });
 
 
@@ -35,7 +35,7 @@ function saveAs(blob: Blob, fileName: string) {
 
 
 $('#print').on('click', function() {
-  window.location.pathname = "enduro-print.html";
+  window.location.pathname = "enduroPrint.html";
 });
 
 $('#JART').on('click', function() {

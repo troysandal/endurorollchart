@@ -24,7 +24,7 @@ $('#changeUserName').on('click', async function () {
 });
 
 $('#create').on('click', function () {
-  window.location.pathname = "/enduro-edit.html";
+  window.location.pathname = "/enduroEdit.html";
 });
 
 $('#import').on('click', function () {
@@ -98,7 +98,7 @@ async function init(user) {
   for (let row of rows) {
     const clone = (template as HTMLTemplateElement)?.content.cloneNode(true) as HTMLElement
     const titleLink = clone.querySelector('a') as HTMLAnchorElement
-    titleLink.href = `/enduro-edit.html?id=${row.id}`
+    titleLink.href = `/enduroEdit.html?id=${row.id}`
     titleLink.textContent = formatTitle(row['title'])
     const buttons = clone.querySelectorAll('button')
     for (let button of buttons) {

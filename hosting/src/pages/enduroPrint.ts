@@ -1,7 +1,7 @@
 import { getEnduro, getEnduroID } from '../firebase'
 import RouteSheet from '../timekeeping/routesheet'
 import {fromJSON} from '../timekeeping/serializeJSON'
-import {RouteSheetViewer} from './routesheet.view'
+import {RouteSheetViewer} from './routesheetView'
 import Enduro from '../timekeeping/enduro'
 
 

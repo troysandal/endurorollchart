@@ -22,7 +22,7 @@ describe('Enduro Route Sheet', () => {
   })
 
   it('prints clean routesheet', function() {
-    cy.visit(`/enduro-print.html?id=${this.routeId}`)
+    cy.visit(`/enduroPrint.html?id=${this.routeId}`)
 
     // Route Statistics
     cy.contains('Reset Distance').should('not.exist')

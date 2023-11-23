@@ -3,7 +3,7 @@ import { getFirebase } from "../firebase";
 import Enduro from "../timekeeping/enduro";
 import { toJSON } from "../timekeeping/serializeJSON";
 import { fromRS } from "../timekeeping/serializeRS";
-import { RouteSheetViewer } from "./routesheet.view";
+import { RouteSheetViewer } from "./routesheetView";
 
 $('#import').on('click', async function () {
   const rsFile = $('#rs')?.val()?.toString().trim() ?? ''
@@ -29,7 +29,7 @@ $('#import').on('click', async function () {
       ...json
     });
     console.log(`Created new enduro ${docRef.id}`)
-    window.location.href = `/enduro-edit.html?id=${docRef.id}`
+    window.location.href = `/enduroEdit.html?id=${docRef.id}`
   } catch (e) {
     console.error('Failed to create new enduro')
     console.error(e)
