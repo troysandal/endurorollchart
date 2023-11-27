@@ -27,7 +27,7 @@
     },
     {
       "name": "Debug Mocha",
-      "cwd": "${workspaceFolder}/tests",
+      "cwd": "${workspaceFolder}/hosting",
       "request": "launch",
       "runtimeArgs": [
           "mocha",
