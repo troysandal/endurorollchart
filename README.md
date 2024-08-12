@@ -1,5 +1,8 @@
 # Enduro Roll Charts
-A web app for creating Time Keeping Enduro Route Sheets and JART roll charts.  The app uses Firebase as it's hosting environment and Vite for builds. There is only only Firebase project which we use for Production, all local development uses Firebase emulators.   There are 3 top level folders, `hosting` contains the main web app.
+A web app for creating Time Keeping Enduro Route Sheets and JART roll charts.  
+
+## About the App & Repository
+The app uses Firebase Firestore for data, Hosting for web site and Vite for builds. There is only only Firebase project which we use for Production, all local development uses Firebase emulators.   There are 3 top level folders, `hosting` contains the main web app.
 
 - `/` - Firebase project, use to deploy firestore rules and indexes.
 - `/hosting` - Web app, majority of code is here.
@@ -7,8 +10,10 @@ A web app for creating Time Keeping Enduro Route Sheets and JART roll charts.  T
 - `rulesTests` - Tests for firebase rules. // TODO - consider merging into hosting
 
 # Development Setup
+## NodeJS
+We require Node v20 LTS, normally using `nvm install --lts` and `node use --lts` to install and use it.
 ## Firebase Emulator
-To get started you'll want to [install the Firebase emulators](https://firebase.google.com/docs/emulator-suite/install_and_configure) if you haven't already. Follow the instructions to install the correct versions of Java and Node (ERC requires Node 20 LTS) for your platform then stop there as the rest of the setup is in projects' `package.json` files. 
+To get started you'll want to [install the Firebase emulators](https://firebase.google.com/docs/emulator-suite/install_and_configure) if you haven't already. Follow the instructions to install the correct versions of Java and Node (ERC requires Node 20 LTS) for your platform then stop there as the rest of the setup of emulators is complete - see `/firebase.json`. **NOTE** - we don't install the Firebase CLI (firebase-tools) globally, it's instead access from `hosting` via `npx firebase`. 
 
 ## First Time Setup
 ``` sh
@@ -24,7 +29,13 @@ npm i
 # Start the Firebase App
 npm run firebase
 
+# OPTIONAL - If firebase won't start and says something like "HTTP Error: 401, Request had invalid authentication credentials." then you need to logout and login
+npx run firebase logout [email]
+npx run firebase login
+
 # Once started open http://localhost:5000
+# NOTE - You can't use Google sign-in via 127.0.0.1, use localhost
+open http://localhost:5000
 ```
 
 ## Web App
@@ -45,7 +56,7 @@ npm run test:unit
 
 # E2E Test UI via Cypress
 cd hosting
-npm run firebase
+npm run firebase  # if not already running
 npm run test:e2e  # need to run in a different terminal
 ```
 
@@ -82,8 +93,12 @@ npx browserslist@latest --update-db
 
 npm run test:e2e
 
-# Once tests pass successfully, push to Firebase
+# Once tests pass successfully, push to Hosting Firebase
 npm run delpoy
+
+# Deploy Firestore Rules & Indexes
+cd ..
+npm run deploy
 
 # Optionally push to GitHub
 git push origin main
@@ -95,9 +110,29 @@ Backup is via the Backup action in `/admin.html`.  You have to do it manually wh
 
 ## Observations
 Enduro Roll Chart 3.1 and Enduro Roll Chart have one difference.
-- **Resets** - ERC calculates Start Time for each reset relative to the previous reset.  This can incur rounding errors (see 03gmer.rs).  ERC computes start times based on distance to the last speed change which is more accurate IMHO.
+- **Resets** - The Windows Enduro Rollchart app calculates Start Time for each reset relative to the previous reset.  This can incur rounding errors (see 03gmer.rs).  This codebase computes start times based on distance to the last speed change which is more accurate IMHO.
 
-# Notes
+# Work Notes
+
+## 2024-08-12
+
+**DONE Hosting Rules**
+Uhh, we only have `firestore.rules`, do we need hosting rules?  What are the defaults?  Check this out. [Docs are here](https://firebase.google.com/docs/hosting/full-config), looks like by default `public` folder is shared and we're doing things fine. I 
+
+**DONE - Build won’t run**
+Tried to fire up the emulator today but `npm run firebase` gives me this - weird as this used to work before.  SOLUTION - access token was outdated, `npx firebase logout` and `npx firebase login` fixed it. Updated README
+
+``` sh
+Error: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+```
+
+**Outdated / Audit**
+(DONE) Dude, node 16 is so last year, need to [bump to v20 LTS](https://endoflife.date/nodejs).
+
+`firebase-admin` and `firebase-tools` are both updated and have breaking changes (see [1](https://firebase.google.com/support/release-notes/admin/node) and [2](https://github.com/firebase/firebase-tools/releases?page=5)) - also lots of critical security updated. 
+
+? Do we need to tackle this now?
+
 
 ## 2023/10 - Firebase Port
 - Cypress
