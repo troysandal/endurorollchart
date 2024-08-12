@@ -50,14 +50,10 @@ There are 3 different sets of tests, unit tests for the route sheet code, Cypres
 cd rulesTests
 npm run test
 
-# Unit Test the core route sheet and JART generation.
+# Unit & Integration Tests
 cd hosting
-npm run test:unit
-
-# E2E Test UI via Cypress
-cd hosting
-npm run firebase  # if not already running
-npm run test:e2e  # need to run in a different terminal
+npm run firebase  # if not already running, run in separate terminal
+npm run test      # test:unit && test:e2e
 ```
 
 ### Cypress Manual Testing
@@ -126,10 +122,16 @@ Tried to fire up the emulator today but `npm run firebase` gives me this - weird
 Error: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
 ```
 
-**Outdated / Audit**
+**DONE - Node v20 Upgrade**
 (DONE) Dude, node 16 is so last year, need to [bump to v20 LTS](https://endoflife.date/nodejs).
 
+**Outdated / Audit**
+
 `firebase-admin` and `firebase-tools` are both updated and have breaking changes (see [1](https://firebase.google.com/support/release-notes/admin/node) and [2](https://github.com/firebase/firebase-tools/releases?page=5)) - also lots of critical security updated. 
+
+TODO
+* DONE - Update existing semver matches `npm update`
+* Update out of semver (chair, cypress, firebase, vite)
 
 ? Do we need to tackle this now?
 
