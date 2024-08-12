@@ -126,12 +126,12 @@ Error: HTTP Error: 401, Request had invalid authentication credentials. Expected
 (DONE) Dude, node 16 is so last year, need to [bump to v20 LTS](https://endoflife.date/nodejs).
 
 **Outdated / Audit**
-
 `firebase-admin` and `firebase-tools` are both updated and have breaking changes (see [1](https://firebase.google.com/support/release-notes/admin/node) and [2](https://github.com/firebase/firebase-tools/releases?page=5)) - also lots of critical security updated. 
 
 TODO
 * DONE - Update existing semver matches `npm update`
 * Update out of semver (chair, cypress, firebase, vite)
+* Do we need cypress in the root?  Prolly not, and what about firebase? 
 
 ? Do we need to tackle this now?
 
