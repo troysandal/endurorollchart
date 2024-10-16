@@ -57,12 +57,10 @@ npm run test      # test:unit && test:e2e
 ```
 
 ### Cypress Manual Testing
-When developing new Cypress tests or debugging existing ones use the Cypress UI via `npx cypress open`.  If you run into errors starting it just do an `npm i` 
-and `npx cypress install` to make sure it's up to date. 
-the container.  Here are examples of how to get it running.
+When developing new Cypress tests or debugging existing ones use the Cypress UI via `npx cypress open`.  If you run into errors starting it just do an `npm i` and `npx cypress install` to make sure it's up to date. Here are examples of how to get it running.
 
 **Cypress UI**
-``` sh
+``` bash
 npm i
 npx cypress install 
 
@@ -74,8 +72,12 @@ npx cypress open
 
 ## Pushing Code
 ```bash
-# Run unit tests
-cd rulesTests
+# Start Firebase
+cd hosting
+npm run dev
+
+# (in separate terminal) Run unit tests
+cd ../rulesTests
 npm run test
 
 cd ../hosting
@@ -92,13 +94,9 @@ npm run test:e2e
 # Once tests pass successfully, push to Hosting Firebase
 npm run delpoy
 
-# Deploy Firestore Rules & Indexes
+# [optional] Deploy Firestore Rules & Indexes ... if changed, not common
 cd ..
 npm run deploy
-
-# Optionally push to GitHub
-git push origin main
-
 ```
 
 ### Backup and Restore
@@ -109,6 +107,19 @@ Enduro Roll Chart 3.1 and Enduro Roll Chart have one difference.
 - **Resets** - The Windows Enduro Rollchart app calculates Start Time for each reset relative to the previous reset.  This can incur rounding errors (see 03gmer.rs).  This codebase computes start times based on distance to the last speed change which is more accurate IMHO.
 
 # Work Notes
+
+## 2024-08-20 - WIP
+
+I've been trying to figure out how to get Vite into development mode.  Tried Passing FIREBASE_FRAMEWORKS_BUILD_TARGET='development' [see](https://stackoverflow.com/questions/77655405/firebase-hosting-web-frameworks-w-angular-selecting-environments) to firebase command but the build output shows 3 Vite build passes each in production with only the serve vite pass having development mode.  Next try - .env.local which [Vite supports](https://vitejs.dev/guide/env-and-mode)
+
+**Outdated NPM Packages**
+`firebase-admin` and `firebase-tools` were both updated and have breaking changes (see [1](https://firebase.google.com/support/release-notes/admin/node) and [2](https://github.com/firebase/firebase-tools/releases?page=5)).  I also updated all packages for critical security updates. 
+
+TODO
+* DONE - Update existing semver matches (root and) `npm update`
+* DONE - Update out of semver (chai, cypress, firebase, vite)
+* Do we need cypress in the root?  Prolly not, and what about firebase? 
+
 
 ## 2024-08-12
 
@@ -125,15 +136,7 @@ Error: HTTP Error: 401, Request had invalid authentication credentials. Expected
 **DONE - Node v20 Upgrade**
 (DONE) Dude, node 16 is so last year, need to [bump to v20 LTS](https://endoflife.date/nodejs).
 
-**Outdated / Audit**
-`firebase-admin` and `firebase-tools` are both updated and have breaking changes (see [1](https://firebase.google.com/support/release-notes/admin/node) and [2](https://github.com/firebase/firebase-tools/releases?page=5)) - also lots of critical security updated. 
 
-TODO
-* DONE - Update existing semver matches `npm update`
-* Update out of semver (chair, cypress, firebase, vite)
-* Do we need cypress in the root?  Prolly not, and what about firebase? 
-
-? Do we need to tackle this now?
 
 
 ## 2023/10 - Firebase Port
