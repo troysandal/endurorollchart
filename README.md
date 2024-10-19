@@ -108,6 +108,13 @@ Enduro Roll Chart 3.1 and Enduro Roll Chart have one difference.
 
 # Work Notes
 
+## 2024-10-19 - JARTs not printing in color
+
+I woke up trying to print a JART for tomorrow's race and found it was completely in black and white.  This never happened before so after stumbling through GIT histories, assuming I did something, I opened Chrome dev tools and found that Bootstrap is globally overriding the `background` in print to white.  This [answer explains](https://stackoverflow.com/questions/33410724/bootstrap-print-css-removes-background-color) why. Two questions:
+
+1. Why did this work until now? We used to embed the bootstrap.min.js but switched to the CDN - that must have broken it, and/or they made an update.
+1. How do I fix it? Use a new `layout_jart.hbs` that doesn't include bootstrap. 
+
 ## 2024-08-20 - WIP
 
 I've been trying to figure out how to get Vite into development mode.  Tried Passing FIREBASE_FRAMEWORKS_BUILD_TARGET='development' [see](https://stackoverflow.com/questions/77655405/firebase-hosting-web-frameworks-w-angular-selecting-environments) to firebase command but the build output shows 3 Vite build passes each in production with only the serve vite pass having development mode.  Next try - .env.local which [Vite supports](https://vitejs.dev/guide/env-and-mode)

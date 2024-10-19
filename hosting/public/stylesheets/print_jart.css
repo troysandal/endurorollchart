@@ -1,6 +1,7 @@
 @media print {
   .multi_col_jart {
     -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
     page-break-after: always;
   }
 
