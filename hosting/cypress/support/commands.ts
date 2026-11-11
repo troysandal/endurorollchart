@@ -64,9 +64,10 @@ setupFirebase()
 
 export function seedEnduro() {
   const routeId = 'asdf123'
-  return cy.fixture('allactions.json')
-    .then((enduro) => {
-      enduro.userId = Cypress.env('TEST_UID')
+  return cy.env(['TEST_UID'])
+    .then(({ TEST_UID }) => cy.fixture('allactions.json').then((enduro) => ({ enduro, TEST_UID })))
+    .then(({ enduro, TEST_UID }) => {
+      enduro.userId = TEST_UID
       enduro.createdAt = firebase.firestore.Timestamp.now()
       enduro.updatedAt = firebase.firestore.Timestamp.now()
       return cy.callFirestore('set', `enduros/${routeId}`, enduro)

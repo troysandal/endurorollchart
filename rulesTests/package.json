@@ -2,6 +2,7 @@
   "name": "tests",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -11,13 +12,13 @@
   "license": "ISC",
   "devDependencies": {
     "@firebase/rules-unit-testing": "^3.0.1",
-    "@types/chai": "^4.3.6",
-    "@types/chai-as-promised": "^7.1.6",
-    "@types/mocha": "^10.0.2",
-    "chai": "^4.3.10",
-    "chai-as-promised": "^7.1.1",
+    "@types/chai": "^5.2.3",
+    "@types/chai-as-promised": "^8.0.2",
+    "@types/mocha": "^10.0.10",
+    "chai": "^6.3.0",
+    "chai-as-promised": "^8.0.2",
     "firebase": "^10.4.0",
-    "mocha": "^11.0.0",
+    "mocha": "^12.0.3",
     "tsx": "^4.20.0"
   },
   "engines": {
