@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@types/jquery": "^3.5.31",
-    "firebase": "^10.14.1",
+    "firebase": "^13.2.0",
     "firebase-tools": "^15.35.0"
   },
   "engines": {
