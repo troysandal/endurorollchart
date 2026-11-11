@@ -3,7 +3,7 @@
 import { defineConfig } from "cypress"
 import {plugin} from 'cypress-firebase'
 import admin from 'firebase-admin'
-import env from './cypress.env.json' assert { type: "json" };
+import env from './cypress.env.json' with { type: "json" };
 
 /**
  * @type {Cypress.PluginConfig}

@@ -21,8 +21,5 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
   },
-  "include": ["src", "../migration/migrate.js"],
-  "ts-node": {
-    "esm": true
-  }
+  "include": ["src"]
 }

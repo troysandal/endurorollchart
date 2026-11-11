@@ -27,6 +27,7 @@ cd ../hosting
 npm i
 
 # Start the Firebase App
+npx firebase experiments:enable webframeworks
 npm run firebase
 
 # OPTIONAL - If firebase won't start and says something like "HTTP Error: 401, Request had invalid authentication credentials." then you need to logout and login
