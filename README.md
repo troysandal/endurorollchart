@@ -95,7 +95,7 @@ npm run test:e2e
 # Once tests pass successfully, push to Hosting Firebase
 npm run delpoy
 
-# [optional] Deploy Firestore Rules & Indexes ... if changed, not common
+# [optional] Deploy Firestore Rules & Indexes from Root ... if changed, not common
 cd ..
 npm run deploy
 ```
@@ -108,6 +108,10 @@ Enduro Roll Chart 3.1 and Enduro Roll Chart have one difference.
 - **Resets** - The Windows Enduro Rollchart app calculates Start Time for each reset relative to the previous reset.  This can incur rounding errors (see 03gmer.rs).  This codebase computes start times based on distance to the last speed change which is more accurate IMHO.
 
 # Work Notes
+
+## 2026-11-11 - Update all npm packages
+
+In preparation for some work, I'm updating all our packages to be modern.
 
 ## 2024-10-19 - JARTs not printing in color
 

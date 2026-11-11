@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "firebase": "FIREBASE_FRAMEWORKS_BUILD_TARGET='development' firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:e2e": "cypress run",
+    "test:e2e": "cypress run --browser chrome",
     "test:unit": "mocha",
     "test:debug": "mocha --inspect"
   },
@@ -18,7 +18,7 @@
     "@types/chai": "^5.2.3",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.19.2",
-    "@vituum/vite-plugin-handlebars": "^1.1.0",
+    "@vituum/vite-plugin-handlebars": "^2.0.2",
     "chai": "^6.3.0",
     "cypress": "^16.3.0",
     "cypress-firebase": "^4.6.0",
@@ -26,8 +26,8 @@
     "mocha": "^12.0.3",
     "tsx": "^4.20.0",
     "typescript": "^5.6.3",
-    "vite": "^5.4.9",
-    "vituum": "^1.1.1"
+    "vite": "^8.3.8",
+    "vituum": "^2.0.2"
   },
   "dependencies": {
     "@types/jquery": "^3.5.31",
