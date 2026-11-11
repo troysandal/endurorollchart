@@ -1,14 +1,16 @@
-import firebase from 'firebase/compat/app'
-import "firebase/compat/firestore";
-import "firebase/compat/auth"
-import * as firebaseui from 'firebaseui';
-import 'firebaseui/dist/firebaseui.css'
-import { config } from '../config'
-import { sendSignInLinkToEmail } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  getAdditionalUserInfo,
+  sendSignInLinkToEmail,
+  signInWithPopup
+} from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
+import { getFirebase } from '../firebase'
 
 // https://firebase.google.com/docs/auth/web/email-link-auth
 
 document.getElementById('signInForm')?.addEventListener('submit', signIn)
+document.getElementById('googleSignIn')?.addEventListener('click', signInWithGoogle)
 
 async function signIn(event: Event) {
   event.preventDefault()
@@ -28,7 +30,7 @@ async function signIn(event: Event) {
     handleCodeInApp: true
   };
 
-  const auth = getFirebase().auth
+  const { auth } = getFirebase()
   try {
     await sendSignInLinkToEmail(auth, email, actionCodeSettings)
     window.localStorage.setItem('emailForSignIn', email)
@@ -43,76 +45,20 @@ async function signIn(event: Event) {
   return false
 }
 
-function connectToEmulators({ auth, firestore }) {
-  if (location.hostname === 'localhost' && config.useEmulator) {
-    firestore.useEmulator('localhost', 8080)
-    auth.useEmulator('http://localhost:9099')
-  }
-}
+async function signInWithGoogle() {
+  const { auth, firestore } = getFirebase()
+  try {
+    const result = await signInWithPopup(auth, new GoogleAuthProvider())
+    console.log(`logged in user ${result.user.uid}`)
 
-export function getFirebase() {
-  const isConfigured = firebase.apps.length > 0
-  const firebaseApp = firebase.initializeApp(config.firebase);
-  const firestore = firebase.firestore()
-  const auth = firebase.auth()
-  const services = { firebaseApp, firestore, auth, isConfigured }
-  
-  if (!services.isConfigured) {
-    connectToEmulators(services)
-  }
-  return services
-}
-
-getFirebase()
-
-const uiConfig = {
-  callbacks: {
-    // Called when the user has been successfully signed in.
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      if (authResult.user) {
-        console.log(`logged in user ${authResult.user.uid}`)
-      }
-      if (authResult.additionalUserInfo) {
-        if (authResult.additionalUserInfo.isNewUser) {
-          console.log(`${authResult.user.id} is NEW!`)
-          
-          const db = firebase.firestore();
-          let userName = authResult.user.displayName
-          if (!userName) {
-            userName = authResult.user.email?.split('@')[0] ?? 'Anonymous Rider'
-          }    
-          db.collection("users").doc(authResult.user.uid).set({
-            userName
-          })
-          .then(() => {
-            console.log("Document successfully written!");
-          })
-          .catch((error) => {
-            console.error("Error writing document: ", error);
-          });
-        }
-      }
-      console.log(`Should redirect to "${redirectUrl}"`)
-      return true;
+    if (getAdditionalUserInfo(result)?.isNewUser) {
+      const userName = result.user.displayName
+        ?? result.user.email?.split('@')[0]
+        ?? 'Anonymous Rider'
+      await setDoc(doc(firestore, 'users', result.user.uid), { userName })
     }
-  },
-  signInFlow: 'popup',
-  signInSuccessUrl: '/user.html',
-  signInOptions: [
-    // firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    // "apple.com",
-    // "microsoft.com",
-    // "yahoo.com"
-  ],
-  tosUrl: '/',
-  privacyPolicyUrl: '/'
+    window.location.href = '/user.html'
+  } catch (error) {
+    console.error(error)
+  }
 }
-
-
-// Initialize the FirebaseUI Widget using Firebase.
-const ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-ui.start('#firebaseui-auth-container', uiConfig);

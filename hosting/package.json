@@ -32,8 +32,7 @@
   "dependencies": {
     "@types/jquery": "^3.5.31",
     "firebase": "^10.14.1",
-    "firebase-tools": "^15.35.0",
-    "firebaseui": "^6.1.0"
+    "firebase-tools": "^15.35.0"
   },
   "engines": {
     "node": ">=24.12 <25"
