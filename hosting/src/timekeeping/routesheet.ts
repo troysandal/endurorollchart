@@ -343,7 +343,7 @@ class RouteSheet extends EventDispatcher {
   // the inserted action may sort into a different position from
   // its mileage.
   insertAction(action:Action, index:number, mutation: boolean = false) {
-    console.assert(action, 'must specify an action');
+    console.assert(!!action, 'must specify an action');
     console.assert(this.getIndex(action) === -1, 'action already in route sheet')
 
     if ((index > 0 || this._actions.length === 0) && index <= this._actions.length) {
@@ -367,7 +367,7 @@ class RouteSheet extends EventDispatcher {
    */
   changeLap(action:Action, lap:number) {
     var actionIndex = this.getIndex(action);
-    console.assert(action, 'must specify an action');
+    console.assert(!!action, 'must specify an action');
     console.assert(actionIndex !== -1, 'action should in route sheet')
     console.assert(typeof lap === 'number', 'invalid lap ' + lap);
 
@@ -407,7 +407,7 @@ class RouteSheet extends EventDispatcher {
    * @param lap    1-based lap index.
    */
   insertIntoLap(action:Action, lap) {
-    console.assert(action, 'must specify an action');
+    console.assert(!!action, 'must specify an action');
     console.assert(this.getIndex(action) === -1, 'action already in route sheet')
     console.assert(typeof lap === 'number', 'invalid lap ' + lap);
 

@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 
-import { speed } from "../../node_modules/cypress/types/jquery/index"
-import { addSyntheticLeadingComment } from "../../node_modules/typescript/lib/typescript"
-
 function addSpeedChange(distance, speed) {
   cy.get('table > tbody > :last-child').within(() => {
     cy.get('select').select('speed')

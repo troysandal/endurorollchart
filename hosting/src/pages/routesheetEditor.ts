@@ -186,7 +186,7 @@ class RouteSheetActionView {
       [ActionType.End, this.generate_end]
     ])
     const generator:Generator = GENERATOR_MAP.get(action.type) as Generator
-    console.assert(generator, `No generator found for ${action.type}`)
+    console.assert(!!generator, `No generator found for ${action.type}`)
     generator.call(this, action);
     this.distanceToGo = $('<td />');
     this.row.append(this.distanceToGo);

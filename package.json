@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx --prefix hosting firebase deploy --only firestore",
-    "firebase": "npx --prefix hosting firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "npx --prefix hosting firebase deploy --only firestore"
   },
   "keywords": [],
   "author": "",

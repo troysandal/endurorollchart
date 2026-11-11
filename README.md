@@ -6,14 +6,15 @@ The app uses Firebase Firestore for data, Hosting for web site and Vite for buil
 
 - `/` - Firebase project, use to deploy firestore rules and indexes.
 - `/hosting` - Web app, majority of code is here.
-- `/migration` - Temporary, for migrating old database.
 - `rulesTests` - Tests for firebase rules. // TODO - consider merging into hosting
 
 # Development Setup
 ## NodeJS
-We require Node v20 LTS, normally using `nvm install --lts` and `node use --lts` to install and use it.
+We require **Node 24 LTS** (`>=24.12 <25`, see `.nvmrc`). Run `nvm install` then `nvm use` in the repo root to install and use it. Don't use `nvm install --lts`, which now installs Node 26. 
+
+**Why not Node 25+?** Node 25 removed `SlowBuffer`, and `buffer-equal-constant-time` (a transitive dependency of `firebase-tools` and `firebase-admin` via `jws`/`jwa`) still uses it, so `npx firebase` crashes on startup. Revisit when `jwa` drops that dependency; until then the `engines` field fails installs on newer Node.
 ## Firebase Emulator
-To get started you'll want to [install the Firebase emulators](https://firebase.google.com/docs/emulator-suite/install_and_configure) if you haven't already. Follow the instructions to install the correct versions of Java and Node (ERC requires Node 20 LTS) for your platform then stop there as the rest of the setup of emulators is complete - see `/firebase.json`. **NOTE** - we don't install the Firebase CLI (firebase-tools) globally, it's instead access from `hosting` via `npx firebase`. 
+To get started you'll want to [install the Firebase emulators](https://firebase.google.com/docs/emulator-suite/install_and_configure) if you haven't already. Follow the instructions to install the correct versions of Java and Node (ERC requires Node 24 LTS) for your platform then stop there as the rest of the setup of emulators is complete - see `/firebase.json`. **NOTE** - we don't install the Firebase CLI (firebase-tools) globally, it's instead access from `hosting` via `npx firebase`. 
 
 ## First Time Setup
 ``` sh
@@ -58,6 +59,12 @@ npm run test      # test:unit && test:e2e
 ```
 
 ### Cypress Manual Testing
+`npm run test:e2e` runs Cypress in Chrome (`--browser chrome`) because Cypress 16 deprecated its bundled Electron browser, so Chrome must be installed.
+
+The Firebase emulators need the web frameworks experiment enabled once per machine: `npx firebase experiments:enable webframeworks`.
+
+**Deploy leftovers.** A hosting deploy leaves its production build in `.firebase/<site>/hosting`. If that folder exists when the emulators start, they serve it as static files (stale hashed bundles, with clean URLs, so `/user.html` redirects with a 301 to `/user`) instead of going through the Vite dev server, which breaks live reload of your source and tests that check `.html` paths (e.g. `login.cy.ts`). The `npm run firebase` / `npm run dev` scripts therefore delete `.firebase/*/hosting` before starting the emulators (it is git-ignored and recreated on every deploy). If you start the emulators some other way, delete that folder first.
+
 When developing new Cypress tests or debugging existing ones use the Cypress UI via `npx cypress open`.  If you run into errors starting it just do an `npm i` and `npx cypress install` to make sure it's up to date. Here are examples of how to get it running.
 
 **Cypress UI**

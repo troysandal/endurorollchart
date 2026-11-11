@@ -170,7 +170,7 @@ function toJSON_1(enduro:Enduro) {
       distance: action.distance
     };
     const v1TypeName = TO_ACTION_MAP[action.type]
-    console.assert(v1TypeName, `No v1 type matches v2 types ${action.type}`)
+    console.assert(!!v1TypeName, `No v1 type matches v2 types ${action.type}`)
     jsonAction.type[TO_ACTION_MAP[action.type]] = true;
 
     if (jsonAction.type.speed) {

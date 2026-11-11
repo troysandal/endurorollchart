@@ -8,7 +8,7 @@
     "build": "tsc && vite build --mode development",
     "deploy": "firebase deploy --only hosting",
     "preview": "vite preview",
-    "firebase": "FIREBASE_FRAMEWORKS_BUILD_TARGET='development' firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
+    "firebase": "rm -rf ../.firebase/*/hosting && FIREBASE_FRAMEWORKS_BUILD_TARGET='development' firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
     "test": "npm run test:unit && npm run test:e2e",
     "test:e2e": "cypress run --browser chrome",
     "test:unit": "mocha",
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/chai": "^5.2.3",
+    "@types/jquery": "^4.0.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.19.2",
     "@vituum/vite-plugin-handlebars": "^2.0.2",
@@ -25,12 +26,11 @@
     "firebase-admin": "^14.5.0",
     "mocha": "^12.0.3",
     "tsx": "^4.20.0",
-    "typescript": "^5.6.3",
+    "typescript": "^7.0.2",
     "vite": "^8.3.8",
     "vituum": "^2.0.2"
   },
   "dependencies": {
-    "@types/jquery": "^3.5.31",
     "firebase": "^13.2.0",
     "firebase-tools": "^15.35.0"
   },

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Enduro Roll Charts: a web app for building Time Keeping Enduro route sheets and JART roll charts. Firebase (Firestore, Auth, Hosting) backend, Vite + Handlebars + TypeScript frontend (mixed jQuery/vanilla JS, Bootstrap styling). Requires Node 20 LTS. There is a single Firebase project (production); all local development uses the Firebase emulators.
+Enduro Roll Charts: a web app for building Time Keeping Enduro route sheets and JART roll charts. Firebase (Firestore, Auth, Hosting) backend, Vite + Handlebars + TypeScript frontend (mixed jQuery/vanilla JS, Bootstrap styling). Requires Node 24 LTS (`>=24.12 <25`, `.nvmrc`); Node 25+ breaks `npx firebase` because a transitive dependency (`buffer-equal-constant-time`) uses the removed `SlowBuffer`. There is a single Firebase project (production); all local development uses the Firebase emulators.
 
 ## Layout
 
@@ -36,7 +36,12 @@ Notes:
 - Use `localhost`, not `127.0.0.1` (Google sign-in fails on the latter).
 - If the emulator fails with "HTTP Error: 401 ... invalid authentication credentials", run `npx firebase logout` then `npx firebase login`.
 - `npm run firebase` imports `./offline-seed` and exports on exit.
-- Mocha uses ESM via the `ts-node/esm` loader (see `hosting/.mocharc.cjs`); `__dirname` is unavailable in ES modules.
+- Mocha runs TypeScript through `tsx` (`node-option: import=tsx` in `hosting/.mocharc.cjs` and `rulesTests/.mocharc.yml`). `rulesTests` is `"type": "module"` (Chai 6 is ESM-only); `__dirname` is unavailable in ES modules.
+- `npm run test:e2e` uses `cypress run --browser chrome` (Electron is deprecated in Cypress 16), so Chrome must be installed. Cypress 16 removed `Cypress.env()`: use `cy.env([...])` (see `cypress/support/commands.ts`).
+- The emulators need the `webframeworks` experiment (`npx firebase experiments:enable webframeworks`, once per machine).
+- If `.firebase/<site>/hosting` exists (left behind by `firebase deploy`) the hosting emulator serves that stale production build statically with clean URLs instead of the Vite dev server, and `/x.html` gets a 301 to `/x`. The `firebase`/`dev` npm scripts delete it before starting the emulators (`rm -rf ../.firebase/*/hosting`); keep that prefix, and if you launch the emulators another way, delete the folder first.
+- `tsconfig.json` sets `"types": ["jquery"]` (TypeScript 7 no longer auto-loads every `@types/*`); the app code is browser code, so don't add `node` types to it.
+- Root `package.json` has no dependencies and a single script, `deploy` (Firestore rules/indexes only), which calls the CLI via `npx --prefix hosting firebase`. Run the emulators and tests from `hosting` / `rulesTests`, not the root.
 
 ## Architecture
 
