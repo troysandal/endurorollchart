@@ -4,6 +4,9 @@
   <head>
     <title>Enduro Roll Charts</title>
     <meta charset="UTF-8" />
+    {{#unless noViewport}}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{/unless}}
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="shortcut icon" href="favicon.ico">
@@ -13,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>    
   </head>
 
-<body>
+<body{{#unless noViewport}} class="responsive"{{/unless}}>
   <div class="container">
     <nav class="navbar navbar-default">
       <!-- Brand and toggle get grouped for better mobile display -->

@@ -11,6 +11,25 @@ a {
   color: #00B7FF;
 }
 
+/*************************** Responsive (screen only) ***************************/
+/* Opt-in: layout.hbs adds body.responsive (with the viewport meta) to every page
+   except the print-oriented ones (enduroPrint, JART), which must stay as they are.
+   Nothing here applies to print. */
+
+@media screen and (max-width: 767px) {
+  /* the 50px body padding plus Bootstrap's container padding wastes a phone screen */
+  body.responsive { padding: 10px; }
+}
+
+@media screen {
+  /* wide tables scroll sideways instead of overflowing the page */
+  .table-scroll { overflow-x: auto; }
+
+  /* when scrolling is available, don't squeeze values like "16 mph" onto two lines;
+     notes may still wrap */
+  .table-scroll table.routeSheet td:not(.note) { white-space: nowrap; }
+}
+
 input.editable { font-weight: bold; }
 input.distance { width:5em; }
 input.minutes { width:5em; }
