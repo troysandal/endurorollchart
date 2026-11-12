@@ -2,7 +2,7 @@
 A web app for creating Time Keeping Enduro Route Sheets and JART roll charts.  
 
 ## About the App & Repository
-The app uses Firebase Firestore for data, Hosting for web site and Vite for builds. There is only only Firebase project which we use for Production, all local development uses Firebase emulators.   `web` contains the main web app.
+The app uses Firebase Firestore for data, Hosting for web site and Vite for builds. There is only one Firebase project, which we use for Production, all local development uses Firebase emulators.   `web` contains the main web app.
 
 - `/` - Firebase project, use to deploy firestore rules and indexes.
 - `/web` - Web app, majority of code is here, including the unit, Firestore rules (`test/rules`) and Cypress tests.
@@ -13,11 +13,11 @@ We require **Node 24 LTS** (`>=24.12 <25`, see `.nvmrc`). Run `nvm install` then
 
 **Why not Node 25+?** Node 25 removed `SlowBuffer`, and `buffer-equal-constant-time` (a transitive dependency of `firebase-tools` and `firebase-admin` via `jws`/`jwa`) still uses it, so `npx firebase` crashes on startup. Revisit when `jwa` drops that dependency; until then the `engines` field fails installs on newer Node.
 ## Firebase Emulator
-To get started you'll want to [install the Firebase emulators](https://firebase.google.com/docs/emulator-suite/install_and_configure) if you haven't already. Follow the instructions to install the correct versions of Java and Node (ERC requires Node 24 LTS) for your platform then stop there as the rest of the setup of emulators is complete - see `/firebase.json`. **NOTE** - we don't install the Firebase CLI (firebase-tools) globally, it's instead access from `web` via `npx firebase`. 
+To get started you'll want to [install the Firebase emulators](https://firebase.google.com/docs/emulator-suite/install_and_configure) if you haven't already. Follow the instructions to install the correct versions of Java and Node (ERC requires Node 24 LTS) for your platform then stop there as the rest of the setup of emulators is complete - see `/firebase.json`. **NOTE** - we don't install the Firebase CLI (firebase-tools) globally, it's instead accessed from `web` via `npx firebase`. 
 
 ## First Time Setup
 ``` sh
-# First time only, install all NPM depenedencies including Firebase tooling
+# First time only, install all NPM dependencies including Firebase tooling
 cd web
 npm i
 
@@ -26,8 +26,8 @@ npx firebase experiments:enable webframeworks
 npm run firebase
 
 # OPTIONAL - If firebase won't start and says something like "HTTP Error: 401, Request had invalid authentication credentials." then you need to logout and login
-npx run firebase logout [email]
-npx run firebase login
+npx firebase logout
+npx firebase login
 
 # Once started open http://localhost:5000
 # NOTE - You can't use Google sign-in via 127.0.0.1, use localhost
@@ -73,11 +73,11 @@ npx cypress open
 ```bash
 # Start Firebase
 cd web
+npm ci
 npm run dev
 
-# (in separate terminal) Run unit tests and Firestore rules tests
+# (in separate terminal) Run unit, Firestore rules and Cypress tests
 cd web
-npm ci 
 npm run test
 
 # optional, use only if Cypress says to do it
@@ -94,7 +94,7 @@ npm run deploy:firestore
 Backup is via the Backup action in `/admin.html`.  You have to do it manually whenever you want.  Lame but works for now.
 
 ## Observations
-Enduro Roll Chart 3.1 and Enduro Roll Chart have one difference.
+The Windows Enduro Rollchart 3.1 app and this app have one difference.
 - **Resets** - The Windows Enduro Rollchart app calculates Start Time for each reset relative to the previous reset.  This can incur rounding errors (see 03gmer.rs).  This codebase computes start times based on distance to the last speed change which is more accurate IMHO.
 
 # Work Notes
@@ -102,6 +102,11 @@ Enduro Roll Chart 3.1 and Enduro Roll Chart have one difference.
 ## 2026-11-11 - Update all npm packages
 
 In preparation for some work, I'm updating all our packages to be modern.
+
+* Pinned Node 24 LTS (`.nvmrc`, `engines`); Node 25+ breaks `npx firebase` (see above).
+* Updated Cypress 16, Vite 8, TypeScript 7, Firebase 13, firebase-tools 15 and firebase-admin 14.
+* Merged the root package and the rules tests into a single npm package, now in `web`.
+* Replaced `chai-as-promised` with `assertFails` / `assertSucceeds` from `@firebase/rules-unit-testing`.
 
 ## 2024-10-19 - JARTs not printing in color
 
@@ -120,7 +125,7 @@ I've been trying to figure out how to get Vite into development mode.  Tried Pas
 TODO
 * DONE - Update existing semver matches (root and) `npm update`
 * DONE - Update out of semver (chai, cypress, firebase, vite)
-* Do we need cypress in the root?  Prolly not, and what about firebase? 
+* DONE (2026-11-11) - Do we need cypress in the root?  No. The root package was removed and everything now lives in `web`.
 
 
 ## 2024-08-12
