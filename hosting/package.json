@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npm run firebase",
     "build": "tsc && vite build --mode development",
-    "deploy": "firebase deploy --only hosting",
+    "deploy:firestore": "firebase deploy --only firestore",
+    "deploy:hosting": "firebase deploy --only hosting",
     "preview": "vite preview",
     "firebase": "rm -rf ../.firebase/*/hosting && FIREBASE_FRAMEWORKS_BUILD_TARGET='development' firebase emulators:start --only auth,firestore,hosting --import=./offline-seed --export-on-exit",
     "test": "npm run test:unit && npm run test:rules && npm run test:e2e",

@@ -18,8 +18,6 @@ To get started you'll want to [install the Firebase emulators](https://firebase.
 ## First Time Setup
 ``` sh
 # First time only, install all NPM depenedencies including Firebase tooling
-npm i
-
 cd hosting
 npm i
 
@@ -93,11 +91,10 @@ npx browserslist@latest --update-db
 npm run test:e2e
 
 # Once tests pass successfully, push to Hosting Firebase
-npm run delpoy
+npm run deploy:hosting
 
-# [optional] Deploy Firestore Rules & Indexes from Root ... if changed, not common
-cd ..
-npm run deploy
+# [optional] Deploy Firestore Rules & Indexes ... if changed, not common
+npm run deploy:firestore
 ```
 
 ### Backup and Restore

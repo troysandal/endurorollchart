@@ -9,7 +9,7 @@ Enduro Roll Charts: a web app for building Time Keeping Enduro route sheets and 
 ## Layout
 
 - `/` – Firebase project: `firestore.rules`, `firestore.indexes.json`, `firebase.json` (emulator ports: auth 9099, firestore 8080, hosting 5000).
-- `hosting/` – the web app; almost all code lives here, including all three kinds of tests (unit in `test/specs`, Firestore rules in `test/rules`, Cypress in `cypress/`). Each npm package (`/` and `hosting`) has its own `package.json` and needs its own `npm i`.
+- `hosting/` – the web app; almost all code lives here, including all three kinds of tests (unit in `test/specs`, Firestore rules in `test/rules`, Cypress in `cypress/`). `hosting` is the only npm package (there is no root `package.json`); run every npm/npx command from there, and the Firebase CLI finds `../firebase.json` by itself.
 
 Firebase CLI is not installed globally; use `npx firebase` from `hosting`.
 
@@ -29,7 +29,8 @@ npx mocha --config .mocharc.rules.cjs -g "name"   # single rules test by title
 npx cypress run --spec cypress/e2e/jart.cy.ts   # single e2e spec
 npx cypress open       # Cypress UI
 
-npm run deploy                   # from hosting: deploy hosting; from root: deploy firestore rules/indexes only
+npm run deploy:hosting           # firebase deploy --only hosting
+npm run deploy:firestore         # firebase deploy --only firestore (rules + indexes)
 ```
 
 Notes:
@@ -41,7 +42,7 @@ Notes:
 - The emulators need the `webframeworks` experiment (`npx firebase experiments:enable webframeworks`, once per machine).
 - If `.firebase/<site>/hosting` exists (left behind by `firebase deploy`) the hosting emulator serves that stale production build statically with clean URLs instead of the Vite dev server, and `/x.html` gets a 301 to `/x`. The `firebase`/`dev` npm scripts delete it before starting the emulators (`rm -rf ../.firebase/*/hosting`); keep that prefix, and if you launch the emulators another way, delete the folder first.
 - `tsconfig.json` sets `"types": ["jquery"]` (TypeScript 7 no longer auto-loads every `@types/*`); the app code is browser code, so don't add `node` types to it.
-- Root `package.json` has no dependencies and a single script, `deploy` (Firestore rules/indexes only), which calls the CLI via `npx --prefix hosting firebase`. Run the emulators and tests from `hosting`, not the root.
+- There is deliberately no bare `deploy` script, so hosting and Firestore deploys are always explicit. `.nvmrc` stays at the repo root; nvm finds it from `hosting/`.
 
 ## Architecture
 
