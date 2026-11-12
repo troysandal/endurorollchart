@@ -44,6 +44,11 @@ Notes:
 - `tsconfig.json` sets `"types": ["jquery"]` (TypeScript 7 no longer auto-loads every `@types/*`); the app code is browser code, so don't add `node` types to it.
 - There is deliberately no bare `deploy` script, so hosting and Firestore deploys are always explicit. `.nvmrc` stays at the repo root; nvm finds it from `web/`.
 
+### Known `npm audit` findings (as of 2026-11-11: 19, 5 high and 14 moderate)
+- **5 high**: `firebase` → `@firebase/firestore` pins `@grpc/grpc-js` to `~1.9.0` (advisories affect `<=1.13.5`; only the Node build of Firestore uses gRPC, not the browser bundle). This is deliberately not overridden. When touching dependencies or running `npm audit`, check `npm view @firebase/firestore@latest dependencies | grep grpc`; once it shows `^1.14` or newer, run `npm update firebase` and confirm the high findings are gone, then delete this section. `"overrides": { "@grpc/grpc-js": "^1.14.7" }` in `web/package.json` also clears them (build, unit, rules and e2e all passed with it) if the user wants it sooner.
+- **14 moderate**: dev tooling only (`firebase-tools`, `mocha` and their transitive `glob`, `minimatch`, `uuid`, `archiver`, ...). Re-check after the next `npm update`.
+- Never run `npm audit fix --force`: it downgrades to firebase 9, firebase-tools 13 and mocha 11.
+
 ## Architecture
 
 **Pages**: each HTML page is a Handlebars template `src/pages/<name>.hbs` paired with a `src/pages/<name>.ts` script (e.g. `enduro.hbs`/`enduro.ts`, `jart.hbs`/`jart.ts`, `admin`, `user`, `login`, `import`). Layouts are in `src/layouts/`; `layout_jart.hbs` intentionally omits Bootstrap because Bootstrap's print CSS overrides backgrounds and breaks colored JART printing. Keep Bootstrap out of that layout.
