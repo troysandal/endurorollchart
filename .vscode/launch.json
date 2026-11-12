@@ -5,7 +5,7 @@
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:5000",
-      "webRoot": "${workspaceFolder}/src"
+      "webRoot": "${workspaceFolder}/web/src"
     },
     {
       "name": "Debug Current File",
@@ -18,23 +18,8 @@
       "type": "node"
     },
     {
-      "name": "TS-Node",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node",
-      "runtimeArgs": [
-        "--transpile-only",
-        // if you use esm
-        "--esm" 
-      ],
-      "program": "${file}",
-      "cwd": "${fileDirname}",
-      "internalConsoleOptions": "openOnSessionStart",
-      "skipFiles": ["<node_internals>/**", "node_modules/**"]
-    },
-    {
       "name": "Debug Mocha",
-      "cwd": "${workspaceFolder}/hosting",
+      "cwd": "${workspaceFolder}/web",
       "request": "launch",
       "runtimeArgs": [
           "mocha",

@@ -9,7 +9,7 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
-hosting/offline-seed/**
+web/offline-seed/**
 
 # Firebase config
 
@@ -28,9 +28,9 @@ pids
 lib-cov
 
 # Cypress
-hosting/cypress/videos/*
-hosting/cypress/screenshots/*
-hosting/serviceAccount.json
+web/cypress/videos/*
+web/cypress/screenshots/*
+web/serviceAccount.json
 
 # Coverage directory used by tools like istanbul
 coverage
