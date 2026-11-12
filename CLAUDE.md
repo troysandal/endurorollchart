@@ -9,8 +9,7 @@ Enduro Roll Charts: a web app for building Time Keeping Enduro route sheets and 
 ## Layout
 
 - `/` – Firebase project: `firestore.rules`, `firestore.indexes.json`, `firebase.json` (emulator ports: auth 9099, firestore 8080, hosting 5000).
-- `hosting/` – the web app; almost all code lives here. Each package (`/`, `hosting`, `rulesTests`) has its own `package.json` and needs its own `npm i`.
-- `rulesTests/` – Mocha tests for Firestore security rules (`@firebase/rules-unit-testing`).
+- `hosting/` – the web app; almost all code lives here, including all three kinds of tests (unit in `test/specs`, Firestore rules in `test/rules`, Cypress in `cypress/`). Each npm package (`/` and `hosting`) has its own `package.json` and needs its own `npm i`.
 
 Firebase CLI is not installed globally; use `npx firebase` from `hosting`.
 
@@ -22,13 +21,14 @@ All from `hosting/` unless noted.
 npm run dev            # alias of `npm run firebase`: starts auth/firestore/hosting emulators (Vite build via firebase frameworks), http://localhost:5000
 npm run build          # tsc && vite build --mode development
 npm run test:unit      # mocha: test/specs/test.*.ts (route sheet logic, no emulator needed)
+npm run test:rules     # mocha --config .mocharc.rules.cjs: test/rules/test.*.ts (Firestore rules; needs emulators running)
 npm run test:e2e       # cypress run (needs emulators running in another terminal)
-npm test               # unit + e2e
+npm test               # unit + rules + e2e
 npx mocha -g "name"    # single unit test by title; or: npx mocha test/specs/test.jart.ts
+npx mocha --config .mocharc.rules.cjs -g "name"   # single rules test by title
 npx cypress run --spec cypress/e2e/jart.cy.ts   # single e2e spec
 npx cypress open       # Cypress UI
 
-cd rulesTests && npm run test    # Firestore rules tests (emulator must be running)
 npm run deploy                   # from hosting: deploy hosting; from root: deploy firestore rules/indexes only
 ```
 
@@ -36,12 +36,12 @@ Notes:
 - Use `localhost`, not `127.0.0.1` (Google sign-in fails on the latter).
 - If the emulator fails with "HTTP Error: 401 ... invalid authentication credentials", run `npx firebase logout` then `npx firebase login`.
 - `npm run firebase` imports `./offline-seed` and exports on exit.
-- Mocha runs TypeScript through `tsx` (`node-option: import=tsx` in `hosting/.mocharc.cjs` and `rulesTests/.mocharc.yml`). `rulesTests` is `"type": "module"` (Chai 6 is ESM-only); `__dirname` is unavailable in ES modules.
+- Mocha runs TypeScript through `tsx` (`node-option: import=tsx` in `hosting/.mocharc.cjs` for unit tests and `hosting/.mocharc.rules.cjs` for rules tests; `--config` replaces the default config rather than merging). The package is `"type": "module"` (Chai 6 is ESM-only); `__dirname` is unavailable in ES modules. The rules test reads `../firestore.rules`, so run it from `hosting/`. The rules tests call `clearFirestore()`, which wipes the emulator's Firestore data (run order: unit, rules, e2e).
 - `npm run test:e2e` uses `cypress run --browser chrome` (Electron is deprecated in Cypress 16), so Chrome must be installed. Cypress 16 removed `Cypress.env()`: use `cy.env([...])` (see `cypress/support/commands.ts`).
 - The emulators need the `webframeworks` experiment (`npx firebase experiments:enable webframeworks`, once per machine).
 - If `.firebase/<site>/hosting` exists (left behind by `firebase deploy`) the hosting emulator serves that stale production build statically with clean URLs instead of the Vite dev server, and `/x.html` gets a 301 to `/x`. The `firebase`/`dev` npm scripts delete it before starting the emulators (`rm -rf ../.firebase/*/hosting`); keep that prefix, and if you launch the emulators another way, delete the folder first.
 - `tsconfig.json` sets `"types": ["jquery"]` (TypeScript 7 no longer auto-loads every `@types/*`); the app code is browser code, so don't add `node` types to it.
-- Root `package.json` has no dependencies and a single script, `deploy` (Firestore rules/indexes only), which calls the CLI via `npx --prefix hosting firebase`. Run the emulators and tests from `hosting` / `rulesTests`, not the root.
+- Root `package.json` has no dependencies and a single script, `deploy` (Firestore rules/indexes only), which calls the CLI via `npx --prefix hosting firebase`. Run the emulators and tests from `hosting`, not the root.
 
 ## Architecture
 

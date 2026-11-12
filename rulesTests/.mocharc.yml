@@ -1,6 +1,0 @@
-recursive: true
-extension: ['ts']
-node-option:
-  - 'import=tsx'
-spec: 'specs/**/test.*.ts'
-timeout: 15000

@@ -2,11 +2,10 @@
 A web app for creating Time Keeping Enduro Route Sheets and JART roll charts.  
 
 ## About the App & Repository
-The app uses Firebase Firestore for data, Hosting for web site and Vite for builds. There is only only Firebase project which we use for Production, all local development uses Firebase emulators.   There are 3 top level folders, `hosting` contains the main web app.
+The app uses Firebase Firestore for data, Hosting for web site and Vite for builds. There is only only Firebase project which we use for Production, all local development uses Firebase emulators.   `hosting` contains the main web app.
 
 - `/` - Firebase project, use to deploy firestore rules and indexes.
-- `/hosting` - Web app, majority of code is here.
-- `rulesTests` - Tests for firebase rules. // TODO - consider merging into hosting
+- `/hosting` - Web app, majority of code is here, including the unit, Firestore rules (`test/rules`) and Cypress tests.
 
 # Development Setup
 ## NodeJS
@@ -21,10 +20,7 @@ To get started you'll want to [install the Firebase emulators](https://firebase.
 # First time only, install all NPM depenedencies including Firebase tooling
 npm i
 
-cd rulesTests
-npm i
-
-cd ../hosting
+cd hosting
 npm i
 
 # Start the Firebase App
@@ -45,17 +41,16 @@ All UI development happens in the `hosting` folder.  The HTML pages are in `/src
 
 
 ## Testing 
-There are 3 different sets of tests, unit tests for the route sheet code, Cypress end-to-end tests and unit tests for Firestore rules. 
+There are 3 different sets of tests, all run from `hosting`: unit tests for the route sheet code, unit tests for Firestore rules and Cypress end-to-end tests. The rules and end-to-end tests need the emulators running.
 
 ``` sh
-# Unit Test the Firestore rules
-cd rulesTests
-npm run test
-
-# Unit & Integration Tests
 cd hosting
-npm run firebase  # if not already running, run in separate terminal
-npm run test      # test:unit && test:e2e
+npm run firebase       # if not already running, run in separate terminal
+npm run test           # test:unit && test:rules && test:e2e
+
+npm run test:unit      # route sheet code, no emulator needed
+npm run test:rules     # Firestore rules (test/rules), needs emulators
+npm run test:e2e       # Cypress, needs emulators
 ```
 
 ### Cypress Manual Testing
@@ -84,13 +79,11 @@ npx cypress open
 cd hosting
 npm run dev
 
-# (in separate terminal) Run unit tests
-cd ../rulesTests
-npm run test
-
-cd ../hosting
+# (in separate terminal) Run unit tests and Firestore rules tests
+cd hosting
 npm ci 
 npm run test:unit
+npm run test:rules
 
 # Run Cypress E2E tests
 npm ci
