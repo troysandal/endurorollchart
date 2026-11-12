@@ -1,7 +1,5 @@
 import 'mocha'
-import { expect, use } from 'chai'
-import chaiAsPromised from 'chai-as-promised'
-use(chaiAsPromised)
+import { expect } from 'chai'
 
 import fs from 'fs'
 import {
@@ -15,6 +13,8 @@ import {
   getDocs
 } from 'firebase/firestore'
 import {
+  assertFails,
+  assertSucceeds,
   initializeTestEnvironment,
   RulesTestEnvironment,
 } from "@firebase/rules-unit-testing"
@@ -91,14 +91,14 @@ describe('Firestore Rules', function() {
       const db = context.firestore()
       const aliceRef = doc(db, "users", 'alice')
 
-      await expect(deleteDoc(aliceRef)).to.be.rejected
+      await assertFails(deleteDoc(aliceRef))
     })
 
     it('cannot create new users', async function() {
       const context = testEnv.authenticatedContext('alice')
       const db = context.firestore()
       const aliceRef = doc(db, "users", 'bob')
-      await expect(setDoc(aliceRef, { name: "Bob Newhart" })).to.be.rejected
+      await assertFails(setDoc(aliceRef, { name: "Bob Newhart" }))
     })
 
 
@@ -106,14 +106,14 @@ describe('Firestore Rules', function() {
       await createBobEnv()
       const aliceContext = await createAliceEnv()
       const bobRef = doc(aliceContext.firestore(), "users", 'bob')
-      await expect(updateDoc(bobRef, { role: 'agent' })).to.be.rejected
+      await assertFails(updateDoc(bobRef, { role: 'agent' }))
     })
 
     it('cannot delete other users', async function() {
       await createBobEnv()
       const aliceContext = await createAliceEnv()
       const bobRef = doc(aliceContext.firestore(), "users", 'bob')
-      await expect(deleteDoc(bobRef)).to.be.rejected
+      await assertFails(deleteDoc(bobRef))
     })
 
     it('can be listed by anyone', async function () {
@@ -137,16 +137,16 @@ describe('Firestore Rules', function() {
         title: "Enduro A",
         userId: 'alice'
       })
-      await expect(updateDoc(doc(db, 'enduros', 'enduroA'), {title: 'New Title'})).to.be.fulfilled
+      await assertSucceeds(updateDoc(doc(db, 'enduros', 'enduroA'), {title: 'New Title'}))
     })
 
     it('cannot be created on behalf of others', async function() {
       const aliceContext = await createAliceEnv()
       const db = aliceContext.firestore()
-      await expect(setDoc(doc(db, 'enduros', 'enduroForBob'), {
+      await assertFails(setDoc(doc(db, 'enduros', 'enduroForBob'), {
         title: "Enduro For Bob",
         userId: 'bob'
-      })).to.be.rejected
+      }))
     })
 
     it('cannot be updated by others', async function() {
@@ -159,11 +159,11 @@ describe('Firestore Rules', function() {
 
       const bobContext = await testEnv.authenticatedContext('bob')
       const bobDb = bobContext.firestore()
-      await expect(
+      await assertFails(
         updateDoc(
-          doc(bobDb, 'enduros', 'enduroA'), 
+          doc(bobDb, 'enduros', 'enduroA'),
           { title: 'Hacked Title' }
-        )).to.be.rejected
+        ))
     })
 
     it('can be deleted if owned by self', async function() {
@@ -188,7 +188,7 @@ describe('Firestore Rules', function() {
       // Bob read's one of Alice's enduros by Id (get)
       const bobContext = await testEnv.authenticatedContext('bob')
       const bobDb = bobContext.firestore()
-      await expect(getDoc(doc(bobDb, 'enduros', 'enduroA'))).to.be.fulfilled
+      await assertSucceeds(getDoc(doc(bobDb, 'enduros', 'enduroA')))
     })
 
 
